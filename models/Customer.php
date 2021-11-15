@@ -64,4 +64,30 @@ class Customer
 
     return false;
   }
+
+  //Get Single Customer
+  public function read_single()
+  {
+    $query = 'SELECT
+          etunimi,
+          sukunimi
+          FROM
+            ' . $this->table . '
+          WHERE
+            id = ?
+          OFFSET 0 LIMIT 1';
+
+    // Prepare statement
+    $stmt = $this->conn->prepare($query);
+
+    //Bind ID
+    $stmt->bindParam(1, $this->id);
+
+    $stmt->execute();
+
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    $this->etunimi = $row['etunimi'];
+    $this->sukunimi = $row['sukunimi'];
+  }
 }
