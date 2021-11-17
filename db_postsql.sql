@@ -9,3 +9,5 @@ CREATE TABLE asiakas (
     postitmp varchar(25) not null,
     tallennettu TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+
+ INSERT INTO asiakas(etunimi, sukunimi, puhnro, sposti, osoite, postinro, postitmp) VALUES ('podd','podd','987123','gagaege','jjflaf f','hlia','sfsdf');
