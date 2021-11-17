@@ -6,7 +6,7 @@ class Database extends Data
 {
   // DB Params
   private $host = 'localhost';
-  private $db_name = 'db';
+  private $db_name = 'rengasvarasto';
   private $username;
   private $password;
   private $conn;
