@@ -1,6 +1,6 @@
 <?php
-header('Access-Control-Allow-Origin: *');
-header('Content-Type: application/json');
+
+require_once '../../inc/headers.php';
 
 include_once '../../config/Database.php';
 include_once '../../models/Customer.php';
@@ -15,13 +15,8 @@ $customer = new Customer($db);
 // Get ID
 $customer->id = isset($_GET['id']) ? $_GET['id'] : die();
 
-// GET post
+// GET customer
 $customer->read_single();
 
-$cust_arr = array(
-  'etunimi' => $customer->etunimi,
-  'sukunimi' => $customer->sukunimi
-);
-
 //Make JSON
-print(json_encode($cust_arr));
+print(json_encode($customer));

@@ -6,6 +6,8 @@ class Customer
   private $table = 'asiakas';
 
   //Customer Properties
+  public $id;
+  public $asnro;
   public $etunimi;
   public $sukunimi;
   public $puhnro;
@@ -47,18 +49,19 @@ class Customer
     $this->postitmp = htmlspecialchars(strip_tags($this->postitmp));
 
     //Bind data
-    $stmt->bindParam(':etunimi', $this->etunimi);
-    $stmt->bindParam(':sukunimi', $this->sukunimi);
-    $stmt->bindParam(':puhnro', $this->puhnro);
-    $stmt->bindParam(':sposti', $this->sposti);
-    $stmt->bindParam(':osoite', $this->osoite);
-    $stmt->bindParam(':postinro', $this->postinro);
-    $stmt->bindParam(':postitmp', $this->postitmp);
+    $stmt->bindParam(':etunimi', $this->etunimi, PDO::PARAM_STR);
+    $stmt->bindParam(':sukunimi', $this->sukunimi, PDO::PARAM_STR);
+    $stmt->bindParam(':puhnro', $this->puhnro, PDO::PARAM_STR);
+    $stmt->bindParam(':sposti', $this->sposti, PDO::PARAM_STR);
+    $stmt->bindParam(':osoite', $this->osoite, PDO::PARAM_STR);
+    $stmt->bindParam(':postinro', $this->postinro, PDO::PARAM_INT);
+    $stmt->bindParam(':postitmp', $this->postitmp, PDO::PARAM_STR);
 
     //Execute query
     if ($stmt->execute()) {
       return true;
     }
+
     //Print error if something goes wrong
     printf("Error: %s.\n", $stmt->error);
 
@@ -70,7 +73,12 @@ class Customer
   {
     $query = 'SELECT
           etunimi,
-          sukunimi
+          sukunimi,
+          puhnro,
+          sposti,
+          osoite,
+          postinro,
+          postitmp,
           FROM
             ' . $this->table . '
           WHERE

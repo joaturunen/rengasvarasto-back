@@ -1,37 +1,38 @@
 <?php
-header('Access-Control-Allow-Origin: *');
-header('Content-Type: application/json');
-header('Access-Control-Allow-Methods: POST');
-header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type, Access-Control-Allow-Methods, Authorization, X-Requested-With');
+require_once '../../inc/headers.php';
+require_once '../../inc/functions.php';
 
 include_once '../../config/Database.php';
 include_once '../../models/Customer.php';
 
-//instantiate DB & connect
-$database = new Database();
-$db = $database->connect();
+try {
+  //instantiate DB & connect
+  $database = new Database();
+  $db = $database->connect();
 
-// Instantiate customer object
-$customer = new Customer($db);
+  $db->beginTransaction();
 
-// Get raw posted data
-$data = json_decode(file_get_contents("php://input"));
+  // Instantiate customer object
+  $customer = new Customer($db);
 
-$customer->etunimi = $data->etunimi;
-$customer->sukunimi = $data->sukunimi;
-$customer->puhnro = $data->puhnro;
-$customer->sposti = $data->sposti;
-$customer->osoite = $data->osoite;
-$customer->postinro = $data->postinro;
-$customer->postitmp = $data->postitmp;
+  // Get raw posted data
+  $data = json_decode(file_get_contents("php://input"));
 
-// Create customer
-if ($customer->create()) {
-  echo json_encode(
-    array('message' => 'Asiakas tallennettu.')
-  );
-} else {
-  echo json_encode(
-    array('message' => 'Asiakkaan tallennus epäonnistui.')
-  );
+  $customer->etunimi = filter_var($data->etunimi, FILTER_SANITIZE_STRING);
+  $customer->sukunimi = filter_var($data->sukunimi, FILTER_SANITIZE_STRING);
+  $customer->puhnro = filter_var($data->puhnro, FILTER_SANITIZE_STRING);
+  $customer->sposti = filter_var($data->sposti, FILTER_SANITIZE_STRING);
+  $customer->osoite = filter_var($data->osoite, FILTER_SANITIZE_STRING);
+  $customer->postinro = filter_var($data->postinro, FILTER_SANITIZE_NUMBER_INT);
+  $customer->postitmp = filter_var($data->postitmp, FILTER_SANITIZE_STRING);
+
+  // Create customer
+  if ($customer->create()) {
+    echo json_encode(
+      array('message' => 'Asiakas tallennettu.')
+    );
+  }
+} catch (PDOException $pdoex) {
+  $db->rollback();
+  returnError($pdoex);
 }
