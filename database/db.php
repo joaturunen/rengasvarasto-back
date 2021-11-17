@@ -71,7 +71,7 @@ asiakas_id, tyontekija_id
 
 create table tuote (
 id smallserial primary key,
-nimi varchar(25) not null,
+nimi varchar(50) not null,
 hinta int not null
 );
 
@@ -91,7 +91,7 @@ id smallserial primary key,
 reknro varchar(25) not null unique,
 merkki varchar(25) not null,
 malli varchar(25) not null,
-rengaskoko varchar(25) not null,
+koko varchar(25) not null,
 pultti varchar(25) not null
 );
 
@@ -150,8 +150,7 @@ foreign key (asiakas_id) references asiakas(id),
 foreign key (auto_id) references auto(id),
 foreign key (paikka_id) references paikka(id),
 merkki varchar(25) not null,
-malli varchar(25) not null,
-koko varchar(25) not null,
+malli varchar(50) not null,
 tyyppi varchar(25) not null,
 kapselit varchar(25) not null,
 urave varchar(25) not null,
