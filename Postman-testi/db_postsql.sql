@@ -11,3 +11,5 @@ CREATE TABLE asiakas (
 );
 
  INSERT INTO asiakas(etunimi, sukunimi, puhnro, sposti, osoite, postinro, postitmp) VALUES ('podd','podd','987123','gagaege','jjflaf f','hlia','sfsdf');
+
+

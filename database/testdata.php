@@ -53,10 +53,10 @@ insert into varasto (id, nimi, toimipiste_id) values
 (2, 'sivu varasto', 1);
 
 insert into hylly (id, varasto_id) values
-(0, 0), (1, 0), (2, 0), (3, 0), (4, 0), (5, 1), (6, 1), (7, 1), (8, 1), (9, 1), (10, 1), (11, 2), (12, 2), (13, 2), (14, 2); 
+(0, 0), (1, 0), (2, 0), (3, 0), (4, 0), (5, 1), (6, 1), (7, 1), (8, 1), (9, 1), (10, 1), (11, 2), (12, 2), (13, 2), (14, 2);
 
 insert into paikka (id, hylly_id) values
-(0, 0), (1, 0), (2, 0), (3, 0), (4, 1), (5, 1), (6, 1), (7, 2), (8, 2), (9, 2), (10, 2), (11, 2); 
+(0, 0), (1, 0), (2, 0), (3, 0), (4, 1), (5, 1), (6, 1), (7, 2), (8, 2), (9, 2), (10, 2), (11, 2);
 
 insert into renkaat (id, asiakas_id, auto_id, paikka_id, tyontekija_id, merkki, malli, tyyppi, kapselit, urave, uraoe, uravt, uraot, teksti, vanteet, kasittelyaika, lisatiedot) values
 (0, 1, 2, 3, 3, 'Firestone', 'etu:215/45ZR17, taka:245/40ZR17', 'kesä', 'ei', 4, 4, 4, 4, 'Renkaat hyvässä kunnossa', 'Maserati x 4', '17-11-2120 13:00:10', ''),

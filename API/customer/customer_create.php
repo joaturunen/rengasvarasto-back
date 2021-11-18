@@ -5,15 +5,15 @@ require_once '../../inc/functions.php';
 $db = null;
 
 // Get raw posted data
-$data = json_decode(file_get_contents("php://input"));
+$input = json_decode(file_get_contents("php://input"));
 
-$etunimi = filter_var($data->etunimi, FILTER_SANITIZE_STRING);
-$sukunimi = filter_var($data->sukunimi, FILTER_SANITIZE_STRING);
-$puhnro = filter_var($data->puhnro, FILTER_SANITIZE_STRING);
-$sposti = filter_var($data->sposti, FILTER_SANITIZE_STRING);
-$osoite = filter_var($data->osoite, FILTER_SANITIZE_STRING);
-$postinro = filter_var($data->postinro, FILTER_SANITIZE_NUMBER_INT);
-$postitmp = filter_var($data->postitmp, FILTER_SANITIZE_STRING);
+$etunimi = filter_var($input->etunimi, FILTER_SANITIZE_STRING);
+$sukunimi = filter_var($input->sukunimi, FILTER_SANITIZE_STRING);
+$puhnro = filter_var($input->puhnro, FILTER_SANITIZE_STRING);
+$sposti = filter_var($input->sposti, FILTER_SANITIZE_STRING);
+$osoite = filter_var($input->osoite, FILTER_SANITIZE_STRING);
+$postinro = filter_var($input->postinro, FILTER_SANITIZE_NUMBER_INT);
+$postitmp = filter_var($input->postitmp, FILTER_SANITIZE_STRING);
 
 
 try {
