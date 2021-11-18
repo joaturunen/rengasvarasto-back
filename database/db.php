@@ -1,8 +1,8 @@
--- Database: rengasvarasto
+-- Database: tirewarehouse
 
--- drop database [if exists] rengasvarasto;
+-- drop database [if exists] tirewarehouse;
 
-create database rengasvarasto
+create database tirewarehouse
 with
 owner = postgres
 ENCODING = 'UTF8'
