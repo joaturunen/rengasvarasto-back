@@ -49,7 +49,7 @@ customersaved timestamp default current_timestamp,
 employee_id int
 );
 
-create table orders (
+create table order (
 id smallserial primary key,
 orderdate timestamp default current_timestamp,
 customer_id int not null,
@@ -59,7 +59,7 @@ foreign key (employee_id) references employee(id)
 on delete restrict
 );
 
-create index on orders (
+create index on order (
 customer_id, employee_id
 );
 
@@ -69,15 +69,16 @@ service varchar(50) not null,
 price int not null
 );
 
-create table ordertable (
-id smallserial primary key,
-services_id int not null,
-foreign key (services_id) references services(id)
+create table order_row (
+order_id int not null,
+service_id int not null,
+foreign key (order_id) references order(id),
+foreign key (service_id) REFERENCES services(id)
 on delete restrict
 );
 
 create index on ordertable (
-services_id
+order_id
 );
 
 create table car (

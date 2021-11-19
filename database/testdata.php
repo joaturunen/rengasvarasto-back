@@ -19,7 +19,7 @@ insert into customer (firstname, lastname, phone, email, address, zipcode, city,
 ('Katsa', 'Mäkis', '0414234567', 'katsa@koulu.org', 'Katsanmäki 4', '10004', 'Katsala', '17-11-2021 12:30:30', 4),
 ('Hantsa', 'Hirviölä', '0415234567', 'hantsa@koulu.org', 'Hantsankolo 5', '10005', 'Hantsala', '17-11-2021 12:40:40', 4);
 
-insert into orders (orderdate, customer_id, employee_id) values
+insert into order (orderdate, customer_id, employee_id) values
 ('17-11-2021 12:00:00', 1, 3),
 ('17-11-2021 12:10:10', 2, 4),
 ('17-11-2021 12:20:20', 3, 3),
@@ -33,8 +33,8 @@ insert into services (service, price) values
 ('renkaanvaihto ja kesäsäil', 80),
 ('renkaanvaihto ja talvisäi', 95);
 
-insert into ordertable (services_id) values
-(4), (2), (5), (1), (3);
+insert into order_row (service_id, order_id) values
+(4,1), (2,1), (5,2), (1,2), (3,4);
 
 
 insert into office (name, phone, email, address, zipcode, city, logo) values
