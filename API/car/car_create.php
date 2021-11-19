@@ -7,29 +7,26 @@ $db = null;
 // Get raw posted data
 $input = json_decode(file_get_contents("php://input"));
 
-$reknro = filter_var($input->reknro, FILTER_SANITIZE_STRING);
-$merkki = filter_var($input->merkki, FILTER_SANITIZE_STRING);
-$koko = filter_var($input->koko, FILTER_SANITIZE_STRING);
-$pultti = filter_var($input->pultti, FILTER_SANITIZE_STRING);
-$asiakas_id = filter_var($input->asiakas_id, FILTER_SANITIZE_NUMBER_INT);
-
+$register = filter_var($input->register, FILTER_SANITIZE_STRING);
+$brand = filter_var($input->brand, FILTER_SANITIZE_STRING);
+$model = filter_var($input->model, FILTER_SANITIZE_STRING);
+$customer_id = filter_var($input->customer_id, FILTER_SANITIZE_NUMBER_INT);
 
 try {
   //instantiate DB & connect
   $db = openDb();
 
   // Create query
-  $sql = "INSERT INTO car (reknro, merkki, koko, pultti, asiakas_id)
+  $sql = "INSERT INTO car (register, brand, model, customer_id)
   VALUES ('" .
-    filter_var($reknro, FILTER_SANITIZE_STRING) . "','" .
-    filter_var($merkki, FILTER_SANITIZE_STRING) . "','" .
-    filter_var($koko, FILTER_SANITIZE_STRING) . "','" .
-    filter_var($pultti, FILTER_SANITIZE_STRING) . "','" .
-    filter_var($asiakas_id, FILTER_SANITIZE_STRING) . "')";
+    filter_var($register, FILTER_SANITIZE_STRING) . "','" .
+    filter_var($brand, FILTER_SANITIZE_STRING) . "','" .
+    filter_var($model, FILTER_SANITIZE_STRING) . "','" .
+    filter_var($customer_id, FILTER_SANITIZE_STRING) . "')";
 
-  $asiakas_id = executeInsert($db, $sql);
+  $car_id = executeInsert($db, $sql);
   header('HTTP/1.1 200 OK');
-  $data = array('id' => $asiakas_id);
+  $data = array('id' => $car_id);
   echo json_encode($data);
 } catch (PDOException $pdoex) {
   returnError($pdoex);

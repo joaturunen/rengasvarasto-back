@@ -8,10 +8,9 @@ $db = null;
 $input = json_decode(file_get_contents('php://input'));
 $id = filter_var($input->id, FILTER_SANITIZE_NUMBER_INT);
 
-
 try {
   $db = openDb();
-  $del = $db->prepare("DELETE FROM asiakas WHERE id = :id");
+  $del = $db->prepare("DELETE FROM customer WHERE id = :id");
 
   $del->bindValue(":id", $id, PDO::PARAM_INT);
 

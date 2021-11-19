@@ -6,8 +6,8 @@ create database tirehotel
 with
 owner = postgres
 ENCODING = 'UTF8'
-lc_collate= 'English_Finland.1252'
-lc_ctype = 'English_Finland.1252'
+lc_collate= 'Finnish_Finland.1252'
+lc_ctype = 'Finnish_Finland.1252'
 tablespace = pg_default
 connection limit = -1;
 
@@ -46,13 +46,7 @@ address varchar(50) not null,
 zipcode char(5) not null,
 city varchar(25) not null,
 customersaved timestamp default current_timestamp,
-employee_id int not null,
-foreign key (employee_id) references employee(id)
-on delete restrict
-);
-
-create index on customer (
-employee_id
+employee_id int
 );
 
 create table orders (

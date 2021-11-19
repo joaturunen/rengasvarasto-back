@@ -11,7 +11,7 @@ $id = filter_var($input->id, FILTER_SANITIZE_NUMBER_INT);
 
 try {
   $db = openDb();
-  $show = $db->prepare("SELECT * FROM asiakas WHERE id = :id");
+  $show = $db->prepare("SELECT * FROM customer WHERE id = :id");
 
   $show->bindValue(":id", $id, PDO::PARAM_INT);
 

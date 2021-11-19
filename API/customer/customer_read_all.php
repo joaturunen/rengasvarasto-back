@@ -6,7 +6,7 @@ $db = null;
 
 try {
   $db = openDb();
-  $show = $db->prepare("SELECT * FROM asiakas");
+  $show = $db->prepare("SELECT * FROM customer");
 
   $show->execute();
   $data = $show->fetchAll(PDO::FETCH_ASSOC);

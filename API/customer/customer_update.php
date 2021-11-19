@@ -7,34 +7,34 @@ $db = null;
 // Get raw posted data
 $input = json_decode(file_get_contents("php://input"));
 
-$etunimi = filter_var($input->etunimi, FILTER_SANITIZE_STRING);
-$sukunimi = filter_var($input->sukunimi, FILTER_SANITIZE_STRING);
-$puhnro = filter_var($input->puhnro, FILTER_SANITIZE_STRING);
-$sposti = filter_var($input->sposti, FILTER_SANITIZE_STRING);
-$osoite = filter_var($input->osoite, FILTER_SANITIZE_STRING);
-$postinro = filter_var($input->postinro, FILTER_SANITIZE_NUMBER_INT);
-$postitmp = filter_var($input->postitmp, FILTER_SANITIZE_STRING);
+$firstname = filter_var($input->firstname, FILTER_SANITIZE_STRING);
+$lastname = filter_var($input->lastname, FILTER_SANITIZE_STRING);
+$phone = filter_var($input->phone, FILTER_SANITIZE_STRING);
+$email = filter_var($input->email, FILTER_SANITIZE_STRING);
+$address = filter_var($input->address, FILTER_SANITIZE_STRING);
+$zipcode = filter_var($input->zipcode, FILTER_SANITIZE_NUMBER_INT);
+$city = filter_var($input->city, FILTER_SANITIZE_STRING);
 $id = filter_var($input->id, FILTER_SANITIZE_NUMBER_INT);
 
 try {
   $db = openDb();
-  $update = $db->prepare("UPDATE asiakas SET 
-            etunimi = :etunimi,
-            sukunimi = :sukunimi,
-            puhnro = :puhnro,
-            sposti = :sposti,
-            osoite = :osoite,
-            postinro = :postinro,
-            postitmp = :postitmp 
+  $update = $db->prepare("UPDATE customer SET 
+            firstname = :firstname,
+            lastname = :lastname,
+            phone = :phone,
+            email = :email,
+            address = :address,
+            zipcode = :zipcode,
+            city = :city 
           WHERE id = :id");
 
-  $update->bindValue(":etunimi", $etunimi, PDO::PARAM_STR);
-  $update->bindValue(":sukunimi", $sukunimi, PDO::PARAM_STR);
-  $update->bindValue(":puhnro", $puhnro, PDO::PARAM_STR);
-  $update->bindValue(":sposti", $sposti, PDO::PARAM_STR);
-  $update->bindValue(":osoite", $osoite, PDO::PARAM_STR);
-  $update->bindValue(":postinro", $postinro, PDO::PARAM_STR);
-  $update->bindValue(":postitmp", $postitmp, PDO::PARAM_STR);
+  $update->bindValue(":firstname", $firstname, PDO::PARAM_STR);
+  $update->bindValue(":lastname", $lastname, PDO::PARAM_STR);
+  $update->bindValue(":phone", $phone, PDO::PARAM_STR);
+  $update->bindValue(":email", $email, PDO::PARAM_STR);
+  $update->bindValue(":address", $address, PDO::PARAM_STR);
+  $update->bindValue(":zipcode", $zipcode, PDO::PARAM_STR);
+  $update->bindValue(":city", $city, PDO::PARAM_STR);
   $update->bindValue(":id", $id, PDO::PARAM_INT);
 
   $update->execute();
