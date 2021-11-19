@@ -8,7 +8,7 @@ $id = isset($_GET['id']) ? $_GET['id'] : die();
 
 try {
   $db = openDb();
-  $show = $db->prepare("SELECT * FROM ordertable WHERE customer_id = :id");
+  $show = $db->prepare("SELECT * FROM order WHERE customer_id = :id");
 
   $show->bindValue(":id", $id, PDO::PARAM_INT);
 

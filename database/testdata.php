@@ -19,7 +19,7 @@ insert into customer (firstname, lastname, phone, email, address, zipcode, city,
 ('Katsa', 'Mäkis', '0414234567', 'katsa@koulu.org', 'Katsanmäki 4', '10004', 'Katsala', '17-11-2021 12:30:30', 4),
 ('Hantsa', 'Hirviölä', '0415234567', 'hantsa@koulu.org', 'Hantsankolo 5', '10005', 'Hantsala', '17-11-2021 12:40:40', 4);
 
-insert into order (orderdate, customer_id, employee_id) values
+insert into orders (date, customer_id, employee_id) values
 ('17-11-2021 12:00:00', 1, 3),
 ('17-11-2021 12:10:10', 2, 4),
 ('17-11-2021 12:20:20', 3, 3),

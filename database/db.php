@@ -49,9 +49,9 @@ customersaved timestamp default current_timestamp,
 employee_id int
 );
 
-create table order (
+create table orders(
 id smallserial primary key,
-orderdate timestamp default current_timestamp,
+date timestamp default current_timestamp,
 customer_id int not null,
 employee_id int not null,
 foreign key (customer_id) references customer(id),
@@ -59,7 +59,7 @@ foreign key (employee_id) references employee(id)
 on delete restrict
 );
 
-create index on order (
+create index on orders (
 customer_id, employee_id
 );
 
@@ -72,12 +72,12 @@ price int not null
 create table order_row (
 order_id int not null,
 service_id int not null,
-foreign key (order_id) references order(id),
+foreign key (order_id) references orders(id),
 foreign key (service_id) REFERENCES services(id)
 on delete restrict
 );
 
-create index on ordertable (
+create index on order_row (
 order_id
 );
 
