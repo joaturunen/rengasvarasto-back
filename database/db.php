@@ -85,8 +85,13 @@ id smallserial primary key,
 register varchar(25) not null unique,
 brand varchar(25) not null,
 model varchar(25) not null,
-tiresize varchar(25) not null,
-tirebolt varchar(25) not null
+customer_id int not null,
+foreign key (customer_id) references customer(id)
+on delete restrict
+);
+
+create index on car (
+customer_id
 );
 
 create table office (
@@ -136,13 +141,13 @@ shelf_id
 
 create table tires (
 id smallserial primary key,
-customer_id int not null,
 car_id int not null,
 slot_id int not null,
-employee_id int not null,
 brand varchar(25) not null,
 model varchar(50) not null,
 type varchar(25) not null,
+tiresize varchar(25) not null,
+tirebolt varchar(25) not null,
 dustrims varchar(25) not null,
 groovefl varchar(25) not null,
 groovefr varchar(25) not null,
@@ -152,13 +157,11 @@ text text,
 rims varchar(25) not null,
 servicedate timestamp default current_timestamp,
 info text,
-foreign key (customer_id) references customer(id),
 foreign key (car_id) references car(id),
-foreign key (slot_id) references slot(id),
-foreign key (employee_id) references employee(id)
+foreign key (slot_id) references slot(id)
 on delete restrict
 );
 
 create index on tires (
-customer_id, car_id, slot_id, employee_id
+car_id, slot_id
 );
