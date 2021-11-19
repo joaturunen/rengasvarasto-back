@@ -53,9 +53,8 @@ create table orders (
 id smallserial primary key,
 orderdate timestamp default current_timestamp,
 customer_id int not null,
-employee_id int not null,
-foreign key (customer_id) references customer(id),
-foreign key (employee_id) references employee(id)
+employee_id int,
+foreign key (customer_id) references customer(id)
 on delete restrict
 );
 
