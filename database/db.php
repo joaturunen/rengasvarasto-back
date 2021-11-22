@@ -89,6 +89,7 @@ orders_id, services_id
 );
 
 create table car (
+id smallserial primary key,
 register varchar(25) primary key,
 brand varchar(25) not null,
 model varchar(25),
