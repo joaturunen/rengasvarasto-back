@@ -1,2 +1,2 @@
 # Ignore datafile that includes postgreSQL data
-Data.php
+config.ini
