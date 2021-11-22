@@ -9,7 +9,8 @@ ENCODING = 'UTF8'
 lc_collate= 'Finnish_Finland.1252'
 lc_ctype = 'Finnish_Finland.1252'
 tablespace = pg_default
-connection limit = -1;
+connection limit = -1
+TEMPLATE template0;
 
 create table role (
 id smallserial primary key,
@@ -46,7 +47,7 @@ address varchar(50),
 zipcode char(5),
 city varchar(25),
 customersaved timestamp default current_timestamp,
-employee_id int not null,                          
+employee_id int not null,
 foreign key (employee_id) references employee(id)
 on delete restrict
 );
@@ -76,7 +77,7 @@ price int
 );
 
 create table ordertable (
-orders_id int primary key, 
+orders_id int primary key,
 services_id int not null,
 foreign key (orders_id) references orders(id),
 foreign key (services_id) references services(id)
@@ -84,12 +85,12 @@ on delete restrict
 );
 
 create index on ordertable (
-orders_id, services_id 
+orders_id, services_id
 );
 
 create table car (
 register varchar(25) primary key,
-brand varchar(25) not null,     
+brand varchar(25) not null,
 model varchar(25),
 year char(4),
 customer_id int not null,
@@ -98,7 +99,7 @@ on delete restrict
 );
 
 create index on car (
-    customer_id
+customer_id
 );
 
 create table office (
@@ -125,7 +126,7 @@ office_id
 );
 
 create table shelf (
-id smallint primary key, 
+id smallint primary key,
 warehouse_id int not null,
 foreign key (warehouse_id) references warehouse(id)
 on delete restrict
@@ -163,7 +164,7 @@ text text,
 rims varchar(25),
 servicedate timestamp default current_timestamp,
 info text,
-foreign key (car_register) references car(register),            
+foreign key (car_register) references car(register),
 foreign key (slot_id) references slot(id)
 on delete restrict
 );
