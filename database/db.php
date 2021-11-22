@@ -13,7 +13,7 @@ connection limit = -1;
 
 create table role (
 id smallserial primary key,
-title varchar(25) not null
+title varchar(25)
 );
 
 create table employee (
@@ -21,13 +21,13 @@ id smallserial primary key,
 firstname varchar(25) not null,
 lastname varchar(25) not null,
 phone varchar(25) not null unique,
-email varchar(25) not null unique,
-address varchar(50) not null,
-zipcode char(5) not null,
-city varchar(25) not null,
+email varchar(50) not null unique,
+address varchar(50),
+zipcode char(5),
+city varchar(25),
 login varchar(25) not null unique,
 password varchar(25) not null,
-role_id int not null,
+role_id int,
 foreign key (role_id) references role(id)
 on delete restrict
 );
@@ -41,12 +41,12 @@ id smallserial primary key,
 firstname varchar(25) not null,
 lastname varchar(25) not null,
 phone varchar(25) not null unique,
-email varchar(25) not null unique,
-address varchar(50) not null,
-zipcode char(5) not null,
-city varchar(25) not null,
+email varchar(50) not null unique,
+address varchar(50),
+zipcode char(5),
+city varchar(25),
 customersaved timestamp default current_timestamp,
-employee_id int not null,
+employee_id int not null,                          
 foreign key (employee_id) references employee(id)
 on delete restrict
 );
@@ -71,28 +71,34 @@ customer_id, employee_id
 
 create table services (
 id smallserial primary key,
-service varchar(50) not null,
-price int not null
+service varchar(50),
+price int
 );
 
 create table ordertable (
-id smallserial primary key,
+orders_id int primary key, 
 services_id int not null,
+foreign key (orders_id) references orders(id),
 foreign key (services_id) references services(id)
 on delete restrict
 );
 
 create index on ordertable (
-services_id
+orders_id, services_id 
 );
 
 create table car (
-id smallserial primary key,
-register varchar(25) not null unique,
-brand varchar(25) not null,
-model varchar(25) not null,
-tiresize varchar(25) not null,
-tirebolt varchar(25) not null
+register varchar(25) primary key,
+brand varchar(25) not null,     
+model varchar(25),
+year char(4),
+customer_id int not null,
+foreign key (customer_id) references customer(id)
+on delete restrict
+);
+
+create index on car (
+    customer_id
 );
 
 create table office (
@@ -100,9 +106,9 @@ id smallserial primary key,
 name varchar(25) not null unique,
 phone varchar(25) not null unique,
 email varchar(25) not null unique,
-address varchar(25) not null,
-zipcode char(5) not null,
-city varchar(25) not null,
+address varchar(25),
+zipcode char(5),
+city varchar(25),
 logo varchar(25)
 );
 
@@ -119,7 +125,7 @@ office_id
 );
 
 create table shelf (
-id smallserial primary key,
+id smallint primary key, 
 warehouse_id int not null,
 foreign key (warehouse_id) references warehouse(id)
 on delete restrict
@@ -130,7 +136,7 @@ warehouse_id
 );
 
 create table slot (
-id smallserial primary key,
+id smallint primary key,
 shelf_id int not null,
 foreign key (shelf_id) references shelf(id)
 on delete restrict
@@ -142,29 +148,27 @@ shelf_id
 
 create table tires (
 id smallserial primary key,
-customer_id int not null,
-car_id int not null,
+car_register varchar(25),
 slot_id int not null,
-employee_id int not null,
-brand varchar(25) not null,
-model varchar(50) not null,
-type varchar(25) not null,
-dustrims varchar(25) not null,
-groovefl varchar(25) not null,
-groovefr varchar(25) not null,
-groovebl varchar(25) not null,
-groovebr varchar(25) not null,
+brand varchar(25),
+model varchar(50),
+type varchar(25),
+hubcups boolean,
+tiresize varchar(25),
+tirebolt varchar(25),
+groovefl varchar(25),
+groovefr varchar(25),
+groovebl varchar(25),
+groovebr varchar(25),
 text text,
-rims varchar(25) not null,
+rims varchar(25),
 servicedate timestamp default current_timestamp,
 info text,
-foreign key (customer_id) references customer(id),
-foreign key (car_id) references car(id),
-foreign key (slot_id) references slot(id),
-foreign key (employee_id) references employee(id)
+foreign key (car_register) references car(register),            
+foreign key (slot_id) references slot(id)
 on delete restrict
 );
 
 create index on tires (
-customer_id, car_id, slot_id, employee_id
+car_register, slot_id
 );
