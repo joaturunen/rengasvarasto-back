@@ -4,20 +4,20 @@ insert into role (title) values
 ('Asiakaspalvelija'),
 ('Hallityöntekijä');
 
-insert into employee (id, firstname, lastname, phone, email, address, zipcode, city, login, password) values
-(0, 'Tuija', 'Toimari', '0401234567', 'tuitoim@rengashotelli.org', 'Toimarikatu 1', '00001', 'Toimarila', 'Toimari', 'salasana'),
-(1, 'Veera', 'Vuorari', '0402234567', 'veevuor@rengashotelli.org', 'Vuorarikatu 2', '00002', 'Vuorarila', 'Vuorari', 'salasana'),
-(2, 'Aapo', 'Aspa', '0403234567', 'aapaspa@rengashotelli.org', 'Asparikatu 3', '00003', 'Asparila', 'Aspari', 'salasana'),
-(3, 'Atte', 'Aspapapapa', '0404234567', 'attaspa@rengashotelli.org', 'Asparikatu 4', '00003', 'Asparila', 'Aspariatte', 'salasana'),
-(4, 'Henna', 'Hallari', '0405234567', 'henhall@rengashotelli.org', 'Hallarikatu 5', '00004', 'Hallarila', 'Hallari', 'salasana'),
-(5, 'Harri', 'Hallimestari', '0406234567', 'harhall@rengashotelli.org', 'Hallarikatu 6', '00004', 'Hallarila', 'Hallaripallari', 'salasana');
+insert into employee (firstname, lastname, phone, email, address, zipcode, city, login, password) values
+('Tuija', 'Toimari', '0401234567', 'tuitoim@rengashotelli.org', 'Toimarikatu 1', '00001', 'Toimarila', 'Toimari', 'salasana'),
+('Veera', 'Vuorari', '0402234567', 'veevuor@rengashotelli.org', 'Vuorarikatu 2', '00002', 'Vuorarila', 'Vuorari', 'salasana'),
+('Aapo', 'Aspa', '0403234567', 'aapaspa@rengashotelli.org', 'Asparikatu 3', '00003', 'Asparila', 'Aspari', 'salasana'),
+('Atte', 'Aspapapapa', '0404234567', 'attaspa@rengashotelli.org', 'Asparikatu 4', '00003', 'Asparila', 'Aspariatte', 'salasana'),
+('Henna', 'Hallari', '0405234567', 'henhall@rengashotelli.org', 'Hallarikatu 5', '00004', 'Hallarila', 'Hallari', 'salasana'),
+('Harri', 'Hallimestari', '0406234567', 'harhall@rengashotelli.org', 'Hallarikatu 6', '00004', 'Hallarila', 'Hallaripallari', 'salasana');
 
-insert into customer (id, firstname, lastname, phone, email, address, zipcode, city, customersaved, employee_id) values
-(0, 'Martsa', 'Järvis', '0411234567', 'martsa@koulu.org', 'Martsankoti 1', '10001', 'Martsala', '17-11-2021 12:00:00', 2),
-(1, 'Jontsa', 'Turus', '0412234567', 'jontsa@koulu.org', 'Jontsankämppä 2', '10002', 'Jontsala', '17-11-2021 12:10:10', 3),
-(2, 'Altsa', 'Luomala', '0413234567', 'altsa@koulu.org', 'Altsankukkula 3', '10003', 'Altsala', '17-11-2021 12:20:20', 2),
-(3, 'Katsa', 'Mäkis', '0414234567', 'katsa@koulu.org', 'Katsanmäki 4', '10004', 'Katsala', '17-11-2021 12:30:30', 4),
-(4, 'Hantsa', 'Hirviölä', '0415234567', 'hantsa@koulu.org', 'Hantsankolo 5', '10005', 'Hantsala', '17-11-2021 12:40:40', 4);
+insert into customer (firstname, lastname, phone, email, address, zipcode, city, customersaved, employee_id) values
+('Martsa', 'Järvis', '0411234567', 'martsa@koulu.org', 'Martsankoti 1', '10001', 'Martsala', '17-11-2021 12:00:00', 2),
+('Jontsa', 'Turus', '0412234567', 'jontsa@koulu.org', 'Jontsankämppä 2', '10002', 'Jontsala', '17-11-2021 12:10:10', 3),
+('Altsa', 'Luomala', '0413234567', 'altsa@koulu.org', 'Altsankukkula 3', '10003', 'Altsala', '17-11-2021 12:20:20', 2),
+('Katsa', 'Mäkis', '0414234567', 'katsa@koulu.org', 'Katsanmäki 4', '10004', 'Katsala', '17-11-2021 12:30:30', 4),
+('Hantsa', 'Hirviölä', '0415234567', 'hantsa@koulu.org', 'Hantsankolo 5', '10005', 'Hantsala', '17-11-2021 12:40:40', 4);
 
 insert into orders (orderdate, customer_id, employee_id) values
 ('17-11-2021 12:00:00', 1, 3),
@@ -26,31 +26,31 @@ insert into orders (orderdate, customer_id, employee_id) values
 ('17-11-2021 12:30:30', 4, 2),
 ('17-11-2021 12:40:40', 5, 4);
 
-insert into services (id, service, price) values
-(0, 'renkaanvaihto', 50),
-(1, 'kesäsäilytys', 40),
-(2, 'talvisäilytys', 55),
-(3, 'renkaanvaihto ja kesäsäilytys', 80),
-(4, 'renkaanvaihto ja talvisäilytys', 95);
+insert into services (service, price) values
+('renkaanvaihto', 50),
+('kesäsäilytys', 40),
+('talvisäilytys', 55),
+('renkaanvaihto ja kesäsäilytys', 80),
+('renkaanvaihto ja talvisäilytys', 95);
 
 insert into ordertable (orders_id, services_id) values
-(0, 4), (1, 2), (2, 0), (3, 1), (4, 3);
+(1, 4), (2, 2), (3, 0), (4, 1), (5, 3);
 
 insert into car (register, brand, model, year, customer_id) values
 ('KGU-848', 'Ferrari', 'Roma', '2020', 1),
 ('PSI-254', 'Lamborghini', 'Diablo', '2019', 3),
-('LDH-298', 'Maserati', 'Ghibli', '2018', 0),
+('LDH-298', 'Maserati', 'Ghibli', '2018', 5),
 ('HGP-379', 'Aston Martin', 'Zagato', '2021', 2),
 ('LOL-666', 'Lada', 'Riva', '1971', 4);
 
-insert into office (id, name, phone, email, address, zipcode, city, logo) values
-(0, 'Päätoimipaikka', '0407654321', 'paatoim@rengashotelli.org', 'Rengashotellintie 6', '76543', 'Renkaala', 'logo.jpg'),
-(1, 'Sivutoimipaikka', '0408654321', 'sivtoim@rengashotelli.org', 'Sivutoimipaikanosoite 5', '76643', 'Sivula', 'logo1.jpg');
+insert into office (name, phone, email, address, zipcode, city, logo) values
+('Päätoimipaikka', '0407654321', 'paatoim@rengashotelli.org', 'Rengashotellintie 6', '76543', 'Renkaala', 'logo.jpg'),
+('Sivutoimipaikka', '0408654321', 'sivtoim@rengashotelli.org', 'Sivutoimipaikanosoite 5', '76643', 'Sivula', 'logo1.jpg');
 
-insert into warehouse (id, name, office_id) values
-(0, 'iso varasto', 0),
-(1, 'pieni varasto', 0),
-(2, 'sivu varasto', 1);
+insert into warehouse (name, office_id) values
+('iso varasto', 1),
+('pieni varasto', 1),
+('sivu varasto', 2);
 
 insert into shelf (id, warehouse_id) values
 (1, 1), (2, 1), (3, 1), (4, 1), (5, 1), (6, 1), (7, 2), (8, 2), (9, 2), (10, 2), (11, 2), (12, 2), (13, 2), (14, 2), (15, 2);

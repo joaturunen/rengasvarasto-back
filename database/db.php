@@ -6,8 +6,8 @@ create database tirehotel
 with
 owner = postgres
 ENCODING = 'UTF8'
-lc_collate= 'English_Finland.1252'
-lc_ctype = 'English_Finland.1252'
+lc_collate= 'Finnish_Finland.1252'
+lc_ctype = 'Finnish_Finland.1252'
 tablespace = pg_default
 connection limit = -1;
 
