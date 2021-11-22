@@ -6,8 +6,8 @@ create database tirehotel
 with
 owner = postgres
 ENCODING = 'UTF8'
-lc_collate= 'English_Finland.1252'
-lc_ctype = 'English_Finland.1252'
+lc_collate= 'Finnish_Finland.1252'
+lc_ctype = 'Finnish_Finland.1252'
 tablespace = pg_default
 connection limit = -1;
 
@@ -46,18 +46,12 @@ address varchar(50) not null,
 zipcode char(5) not null,
 city varchar(25) not null,
 customersaved timestamp default current_timestamp,
-employee_id int not null,
-foreign key (employee_id) references employee(id)
-on delete restrict
+employee_id int
 );
 
-create index on customer (
-employee_id
-);
-
-create table orders (
+create table orders(
 id smallserial primary key,
-orderdate timestamp default current_timestamp,
+date timestamp default current_timestamp,
 customer_id int not null,
 employee_id int not null,
 foreign key (customer_id) references customer(id),
@@ -75,15 +69,16 @@ service varchar(50) not null,
 price int not null
 );
 
-create table ordertable (
-id smallserial primary key,
-services_id int not null,
-foreign key (services_id) references services(id)
+create table order_row (
+order_id int not null,
+service_id int not null,
+foreign key (order_id) references orders(id),
+foreign key (service_id) REFERENCES services(id)
 on delete restrict
 );
 
-create index on ordertable (
-services_id
+create index on order_row (
+order_id
 );
 
 create table car (
@@ -91,8 +86,13 @@ id smallserial primary key,
 register varchar(25) not null unique,
 brand varchar(25) not null,
 model varchar(25) not null,
-tiresize varchar(25) not null,
-tirebolt varchar(25) not null
+customer_id int not null,
+foreign key (customer_id) references customer(id)
+on delete restrict
+);
+
+create index on car (
+customer_id
 );
 
 create table office (
@@ -142,13 +142,13 @@ shelf_id
 
 create table tires (
 id smallserial primary key,
-customer_id int not null,
 car_id int not null,
 slot_id int not null,
-employee_id int not null,
 brand varchar(25) not null,
 model varchar(50) not null,
 type varchar(25) not null,
+tiresize varchar(25) not null,
+tirebolt varchar(25) not null,
 dustrims varchar(25) not null,
 groovefl varchar(25) not null,
 groovefr varchar(25) not null,
@@ -158,13 +158,11 @@ text text,
 rims varchar(25) not null,
 servicedate timestamp default current_timestamp,
 info text,
-foreign key (customer_id) references customer(id),
 foreign key (car_id) references car(id),
-foreign key (slot_id) references slot(id),
-foreign key (employee_id) references employee(id)
+foreign key (slot_id) references slot(id)
 on delete restrict
 );
 
 create index on tires (
-customer_id, car_id, slot_id, employee_id
+car_id, slot_id
 );

@@ -8,18 +8,15 @@ include_once '../../config/Database.php';
 include_once '../../models/Customer.php';
 
 // Get raw posted data
-$username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
+$username = filter_input(INPUT_POST, 'login', FILTER_SANITIZE_STRING);
 $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
 
 
 //SQL for user
-$sql = "select * from tyontekija where username = '$username'";
+$sql = "select * from employee where username = '$login'";
 
 try {
-  //instantiate DB & connect
-  $database = new Database();
-  $db = $database->connect();
-
+  $db = openDb();
   //Get data from DB
   $query = $db->query($sql);
   $user = $query->fetch(PDO::FETCH_OBJ);
@@ -28,15 +25,17 @@ try {
   if ($user) {
 
     // User is ok
-    $passwordDb = $user->salasana;
+    $passwordDb = $user->password;
 
     //Check password ok
     if (password_verify($password, $passwordDb)) {
       //Password is ok
       header('HTTP/1.1 200 OK');
       $data = array(
-        'username' => $user->username,
-        'password' => $user->passworld
+        'username' => $user->login,
+        'password' => $user->password,
+        'firstname' => $user->firstname,
+        'lastname' => $uset->lastname
       );
       $_SESSION['user'] = $user;
     } else {

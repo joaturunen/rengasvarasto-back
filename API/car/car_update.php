@@ -7,25 +7,22 @@ $db = null;
 // Get raw posted data
 $input = json_decode(file_get_contents("php://input"));
 
-$reknro = filter_var($input->reknro, FILTER_SANITIZE_STRING);
-$merkki = filter_var($input->merkki, FILTER_SANITIZE_STRING);
-$koko = filter_var($input->koko, FILTER_SANITIZE_STRING);
-$pultti = filter_var($input->pultti, FILTER_SANITIZE_STRING);
+$register = filter_var($input->register, FILTER_SANITIZE_STRING);
+$brand = filter_var($input->brand, FILTER_SANITIZE_STRING);
+$model = filter_var($input->model, FILTER_SANITIZE_STRING);
 $id = filter_var($input->id, FILTER_SANITIZE_NUMBER_INT);
 
 try {
   $db = openDb();
   $update = $db->prepare("UPDATE car SET 
-            reknro = :reknro,
-            merkki = :merkki,
-            koko = :koko,
-            pultti = :pultti
+            register = :register,
+            brand = :brand,
+            model = :model
           WHERE id = :id");
 
-  $update->bindValue(":reknro", $reknro, PDO::PARAM_STR);
-  $update->bindValue(":merkki", $merkki, PDO::PARAM_STR);
-  $update->bindValue(":koko", $koko, PDO::PARAM_STR);
-  $update->bindValue(":pultti", $pultti, PDO::PARAM_STR);
+  $update->bindValue(":register", $register, PDO::PARAM_STR);
+  $update->bindValue(":brand", $brand, PDO::PARAM_STR);
+  $update->bindValue(":model", $model, PDO::PARAM_STR);
   $update->bindValue(":id", $id, PDO::PARAM_INT);
 
   $update->execute();
