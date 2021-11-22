@@ -137,7 +137,7 @@ warehouse_id
 
 create table slot (
 id smallint primary key,
-shelf_id int not null,
+shelf_id smallint not null,
 foreign key (shelf_id) references shelf(id)
 on delete restrict
 );
@@ -148,7 +148,7 @@ shelf_id
 
 create table tires (
 car_register varchar(25) primary key,
-slot_id int not null,
+slot_id smallint not null,
 brand varchar(25),
 model varchar(50),
 type varchar(25),
