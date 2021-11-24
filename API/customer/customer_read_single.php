@@ -5,11 +5,11 @@ require_once '../../inc/functions.php';
 $db = null;
 
 // Get raw posted data
-//$input = json_decode(file_get_contents('php://input'));
+$input = json_decode(file_get_contents('php://input'));
 
-//$uri = parse_url(filter_input(INPUT_SERVER, 'PATH_INFO'), PHP_URL_PATH);
+$uri = parse_url(filter_input(INPUT_SERVER, 'PATH_INFO'), PHP_URL_PATH);
 
-//$id = filter_var($input->cus_id, FILTER_SANITIZE_NUMBER_INT);
+$id = filter_var($input->cus_id, FILTER_SANITIZE_NUMBER_INT);
 
 $id = isset($_GET['id']) ? $_GET['id'] : die();
 
