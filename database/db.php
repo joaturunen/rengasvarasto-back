@@ -6,14 +6,14 @@ create database tirehotel
 with
 owner = postgres
 ENCODING = 'UTF8'
-lc_collate= 'Finnish_Finland.1252'
-lc_ctype = 'Finnish_Finland.1252'
+lc_collate= 'English_Finland.1252'
+lc_ctype = 'English_Finland.1252'
 tablespace = pg_default
 connection limit = -1;
 
 create table role (
 id smallserial primary key,
-title varchar(25) not null
+title varchar(25)
 );
 
 create table employee (
@@ -21,18 +21,18 @@ id smallserial primary key,
 firstname varchar(25) not null,
 lastname varchar(25) not null,
 phone varchar(25) not null unique,
-email varchar(25) not null unique,
-address varchar(50) not null,
-zipcode char(5) not null,
-city varchar(25) not null,
+email varchar(50) not null unique,
+address varchar(50),
+zipcode char(5),
+city varchar(25),
 login varchar(25) not null unique,
 password varchar(25) not null,
-role_id int not null,
+role_id int,
 foreign key (role_id) references role(id)
 on delete restrict
 );
 
-create index on employee (
+create index role_index on employee (
 role_id
 );
 
@@ -41,17 +41,23 @@ id smallserial primary key,
 firstname varchar(25) not null,
 lastname varchar(25) not null,
 phone varchar(25) not null unique,
-email varchar(25) not null unique,
-address varchar(50) not null,
-zipcode char(5) not null,
-city varchar(25) not null,
+email varchar(50) not null unique,
+address varchar(50),
+zipcode char(5),
+city varchar(25),
 customersaved timestamp default current_timestamp,
-employee_id int
+employee_id int not null,                          
+foreign key (employee_id) references employee(id)
+on delete restrict
 );
 
-create table orders(
+create index employee_index on customer (
+employee_id
+);
+
+create table orders (
 id smallserial primary key,
-date timestamp default current_timestamp,
+orderdate timestamp default current_timestamp,
 customer_id int not null,
 employee_id int not null,
 foreign key (customer_id) references customer(id),
@@ -59,39 +65,39 @@ foreign key (employee_id) references employee(id)
 on delete restrict
 );
 
-create index on orders (
+create index orders_index on orders (
 customer_id, employee_id
 );
 
 create table services (
 id smallserial primary key,
-service varchar(50) not null,
-price int not null
+service varchar(50),
+price int
 );
 
-create table order_row (
-order_id int not null,
-service_id int not null,
-foreign key (order_id) references orders(id),
-foreign key (service_id) REFERENCES services(id)
+create table ordertable (
+orders_id int primary key, 
+services_id int not null,
+foreign key (orders_id) references orders(id),
+foreign key (services_id) references services(id)
 on delete restrict
 );
 
-create index on order_row (
-order_id
+create index ordertable_index on ordertable (
+orders_id, services_id 
 );
 
 create table car (
-id smallserial primary key,
-register varchar(25) not null unique,
-brand varchar(25) not null,
-model varchar(25) not null,
+register varchar(25) primary key,
+brand varchar(25) not null,     
+model varchar(25),
+year char(4),
 customer_id int not null,
 foreign key (customer_id) references customer(id)
 on delete restrict
 );
 
-create index on car (
+create index car_index on car (
 customer_id
 );
 
@@ -100,9 +106,9 @@ id smallserial primary key,
 name varchar(25) not null unique,
 phone varchar(25) not null unique,
 email varchar(25) not null unique,
-address varchar(25) not null,
-zipcode char(5) not null,
-city varchar(25) not null,
+address varchar(25),
+zipcode char(5),
+city varchar(25),
 logo varchar(25)
 );
 
@@ -114,55 +120,54 @@ foreign key (office_id) references office(id)
 on delete restrict
 );
 
-create index on warehouse (
+create index warehouse_index on warehouse (
 office_id
 );
 
 create table shelf (
-id smallserial primary key,
+id smallint primary key, 
 warehouse_id int not null,
 foreign key (warehouse_id) references warehouse(id)
 on delete restrict
 );
 
-create index on shelf (
+create index shelf_index on shelf (
 warehouse_id
 );
 
 create table slot (
-id smallserial primary key,
-shelf_id int not null,
+id smallint primary key,
+shelf_id smallint not null,
 foreign key (shelf_id) references shelf(id)
 on delete restrict
 );
 
-create index on slot (
+create index slot_index on slot (
 shelf_id
 );
 
 create table tires (
-id smallserial primary key,
-car_id int not null,
-slot_id int not null,
-brand varchar(25) not null,
-model varchar(50) not null,
-type varchar(25) not null,
-tiresize varchar(25) not null,
-tirebolt varchar(25) not null,
-dustrims varchar(25) not null,
-groovefl varchar(25) not null,
-groovefr varchar(25) not null,
-groovebl varchar(25) not null,
-groovebr varchar(25) not null,
+car_register varchar(25) primary key,
+slot_id smallint not null,
+brand varchar(25),
+model varchar(50),
+type varchar(25),
+hubcups boolean,
+tiresize varchar(25),
+tirebolt varchar(25),
+groovefl varchar(25),
+groovefr varchar(25),
+groovebl varchar(25),
+groovebr varchar(25),
 text text,
-rims varchar(25) not null,
+rims varchar(25),
 servicedate timestamp default current_timestamp,
 info text,
-foreign key (car_id) references car(id),
+foreign key (car_register) references car(register),            
 foreign key (slot_id) references slot(id)
 on delete restrict
 );
 
-create index on tires (
-car_id, slot_id
+create index tires_index on tires (
+car_register, slot_id
 );
