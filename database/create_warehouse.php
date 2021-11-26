@@ -38,7 +38,7 @@
     } catch (PDOException $pdoex) {
       returnError($pdoex);
     }
-
+    echo "<h4>Toimisto luotu.</h4>";
 
     try {
       //instantiate DB & connect
@@ -50,7 +50,7 @@
     } catch (PDOException $pdoex) {
       returnError($pdoex);
     }
-
+    echo "<h4>Varasto luotu.</h4>";
     $nro_shelf = 5;
     $create_shelf = 1;
     $shelf_1 = [36, 36, 40, 40, 88];
