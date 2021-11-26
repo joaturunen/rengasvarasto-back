@@ -8,14 +8,11 @@
   <?php
   echo "Remember that use this only to start a new warehouse!";
   ?>
-
-  <h3>Create warehouse and shelfs</h3>
   <div style="background-color: #999;padding: 1rem; margin-top: 1rem">
-    <p>Office is: 'Päätoimipaikka' id=1</p>
     <p style="padding: 1rem; background-color: #fff;">240 rengassarjapaikkaa:<br> hylly 1 36 sarjaa,<br> hylly 2 36 sarjaa,<br> hylly 3 40 sarjaa,<br> hylly 4 40 sarjaa,<br> hylly 5 88 sarjaa</p>
 
     <form method="post">
-      <p>Luodaan toimisto, sinne varasto, 5 hyllyä ja niihin tarvittavat paikat.</p>
+      <p>Lets create a office, a warehouse, five shelfs and slots also.</p>
       <input type="submit" name="addWarehouseShelfs" value="Create shelfs and slots">
     </form>
   </div>
@@ -38,7 +35,7 @@
     } catch (PDOException $pdoex) {
       returnError($pdoex);
     }
-    echo "<h4>Toimisto luotu.</h4>";
+    echo "<h4>The Office has been created.</h4>";
 
     try {
       //instantiate DB & connect
@@ -50,7 +47,7 @@
     } catch (PDOException $pdoex) {
       returnError($pdoex);
     }
-    echo "<h4>Varasto luotu.</h4>";
+    echo "<h4>The Warehouse has been created.</h4>";
     $nro_shelf = 5;
     $create_shelf = 1;
     $shelf_1 = [36, 36, 40, 40, 88];
@@ -87,10 +84,28 @@
         $slots_nro++;
         $slot_id++;
       }
-      echo "Hyllyjä luotu: " . $create_shelf .  " Paikkoja luotu: " . $slots_nro - 1 . "<br>";
+      echo "Shelf nro: " . $create_shelf .  " Slots in shelf: " . $slots_nro - 1 . "<br>";
       $create_shelf++;
     }
-    echo "<h4>Hyllyjä yhteensä: " . $nro_shelf .  " Paikkoja yhteensä: " . $slot_id - 1 . "</h4>";
+    echo "<h4>Shelf sum " . $nro_shelf .  " Slots sum: " . $slot_id - 1 . "</h4>";
+
+    $slots_order_id = 1;
+    while ($slots_order_id < $slot_id) {
+      try {
+        //instantiate DB & connect
+        $db = openDb();
+        // Create query
+        $sql = "insert into slot_order (slot_id) values ($slots_order_id)";
+
+        $db->query($sql);
+      } catch (PDOException $pdoex) {
+        returnError($pdoex);
+      }
+
+      $db = null;
+      $slots_order_id++;
+    }
+    echo "<h4>Slots checkpoint has been created. Sum: " . $slots_order_id - 1 . "</h4>";
   }
 
   ?>
