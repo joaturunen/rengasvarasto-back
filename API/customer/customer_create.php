@@ -14,6 +14,7 @@ $email = filter_var($input->email, FILTER_SANITIZE_STRING);
 $address = filter_var($input->address, FILTER_SANITIZE_STRING);
 $zipcode = filter_var($input->zipcode, FILTER_SANITIZE_NUMBER_INT);
 $city = filter_var($input->city, FILTER_SANITIZE_STRING);
+$employee_id = filter_var($input->employee_id, FILTER_SANITIZE_NUMBER_INT);
 
 
 try {
@@ -21,7 +22,7 @@ try {
   $db = openDb();
 
   // Create query
-  $sql = "INSERT INTO customer (firstname, lastname, phone, email, address, zipcode, city)
+  $sql = "INSERT INTO customer (firstname, lastname, phone, email, address, zipcode, city, employee_id)
   VALUES ('" .
     filter_var($firstname, FILTER_SANITIZE_STRING) . "','" .
     filter_var($lastname, FILTER_SANITIZE_STRING) . "','" .
@@ -29,12 +30,14 @@ try {
     filter_var($email, FILTER_SANITIZE_STRING) . "','" .
     filter_var($address, FILTER_SANITIZE_STRING) . "','" .
     filter_var($zipcode, FILTER_SANITIZE_STRING) . "','" .
-    filter_var($city, FILTER_SANITIZE_STRING) . "')";
+    filter_var($city, FILTER_SANITIZE_STRING) . "','" .
+    filter_var($employee_id, FILTER_SANITIZE_STRING) . "')";
 
-  $customerid = executeInsert($db, $sql);
+  $customer_id = executeInsert($db, $sql);
   header('HTTP/1.1 200 OK');
-  $data = array('id' => $customerid);
+  $data = array('id' => $customer_id);
   echo json_encode($data);
 } catch (PDOException $pdoex) {
+
   returnError($pdoex);
 }
