@@ -6,8 +6,8 @@ create database tirehotel
 with
 owner = postgres
 ENCODING = 'UTF8'
-lc_collate= 'English_Finland.1252'
-lc_ctype = 'English_Finland.1252'
+lc_collate= 'Finnish_Finland.1252'
+lc_ctype = 'Finnish_Finland.1252'
 tablespace = pg_default
 connection limit = -1;
 
@@ -88,10 +88,10 @@ orders_id, services_id
 );
 
 create table car (
-register varchar(25) primary key,
+id smallserial primary key,
+register varchar(25) unique,
 brand varchar(25) not null,     
 model varchar(25),
-year char(4),
 customer_id int not null,
 foreign key (customer_id) references customer(id)
 on delete restrict
@@ -147,8 +147,8 @@ shelf_id
 );
 
 create table tires (
-car_register varchar(25) primary key,
-slot_id smallint not null,
+id smallserial primary key,
+car_id int not null,
 brand varchar(25),
 model varchar(50),
 type varchar(25),
@@ -163,11 +163,16 @@ text text,
 rims varchar(25),
 servicedate timestamp default current_timestamp,
 info text,
-foreign key (car_register) references car(register),            
-foreign key (slot_id) references slot(id)
-on delete restrict
+foreign key (car_id) references car(id)
 );
 
 create index tires_index on tires (
-car_register, slot_id
+car_id
+);
+
+create table slot_order (
+slot_id int not null,
+tires_id int,
+foreign key (tires_id) references tires(id) on delete restrict,
+foreign key (slot_id) references slot(id)
 );
