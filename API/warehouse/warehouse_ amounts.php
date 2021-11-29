@@ -6,7 +6,7 @@ $db = null;
 
 try {
   $db = openDb();
-  $show = $db->prepare("SELECT tires_id FROM slot_order");
+  $show = $db->prepare("SELECT * tires_id FROM slot_order");
 
   $show->execute();
   $data = $show->fetchAll(PDO::FETCH_ASSOC);
