@@ -6,7 +6,7 @@ $db = null;
 
 try {
   $db = openDb();
-  $show = $db->prepare("SELECT * tires_id FROM slot_order");
+  $show = $db->prepare("SELECT tires_id FROM slot_order");
 
   $show->execute();
   $data = $show->fetchAll(PDO::FETCH_ASSOC);
@@ -15,11 +15,11 @@ try {
   $letsCount = 0;
   $free = 0;
   $taken = 0;
-  while($letsCount <$slots){
+  while ($letsCount < $slots) {
     $row = $data[$letsCount];
-    if($row['tires_id'] === null){
+    if ($row['tires_id'] === null) {
       $free++;
-    } else{
+    } else {
       $taken++;
     };
 
