@@ -11,6 +11,8 @@ $db = null;
 
 $id = isset($_GET['id']) ? $_GET['id'] : die();
 
+$id = isset($_GET['id']) ? $_GET['id'] : die();
+
 try {
   $db = openDb();
   $show = $db->prepare("SELECT * FROM car WHERE id = :id");
