@@ -6,7 +6,7 @@ $db = null;
 
 try {
   $db = openDb();
-  $show = $db->prepare("SELECT * tires_id FROM slot_order");
+  $show = $db->prepare("SELECT tires_id FROM slot_order");
 
   $show->execute();
   $data = $show->fetchAll(PDO::FETCH_ASSOC);
@@ -15,18 +15,21 @@ try {
   $letsCount = 0;
   $free = 0;
   $taken = 0;
-  while($letsCount <$slots){
+  while ($letsCount < $slots) {
     $row = $data[$letsCount];
-    if($row['tires_id'] === null){
+    if ($row['tires_id'] === null) {
       $free++;
-    } else{
+    } else {
       $taken++;
     };
 
     $letsCount++;
   }
 
-  $data = array("all" => $slots, "free" => $free, "taken" => $taken);
+  $percent = $taken / $slots * 100;
+  $degree = (360 / 100) * $percent;
+
+  $data = array("all" => $slots, "free" => $free, "taken" => $taken, "degree" => $degree);
 
   header('HTTP/1.1 200 OK');
 

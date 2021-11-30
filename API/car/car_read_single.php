@@ -15,8 +15,6 @@ $customer_id = filter_var($input->customer_id, FILTER_SANITIZE_NUMBER_INT);
 
 $id = isset($_GET['id']) ? $_GET['id'] : die();
 
-$id = isset($_GET['id']) ? $_GET['id'] : die();
-
 try {
   $db = openDb();
   $show = $db->prepare("SELECT * FROM car WHERE customer_id = :customer_id");
