@@ -26,7 +26,10 @@ try {
     $letsCount++;
   }
 
-  $data = array("all" => $slots, "free" => $free, "taken" => $taken);
+  $percent = $taken / $slots * 100;
+  $degree = (360 / 100) * $percent;
+
+  $data = array("all" => $slots, "free" => $free, "taken" => $taken, "degree" => $degree);
 
   header('HTTP/1.1 200 OK');
 
