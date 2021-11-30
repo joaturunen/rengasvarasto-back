@@ -7,7 +7,6 @@ require_once '../../inc/functions.php';
 $input = json_decode(file_get_contents('php://input'));
 $searchCriteria = filter_var($input->searchCriteria, FILTER_SANITIZE_STRING);
 
-
 try {
     $db = openDb();
 
@@ -23,7 +22,6 @@ try {
     header('HTTP/1.1 200 OK');
   
     echo json_encode($data);
-
 
 } catch (PDOException $pdoex) {
     returnError($pdoex);
