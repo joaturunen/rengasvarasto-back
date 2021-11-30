@@ -34,3 +34,39 @@ function returnError(PDOException $pdoex): void
   echo json_encode($error);
   exit;
 }
+
+function getCars($id)
+{
+  try {
+    $db = openDb();
+
+    $show = $db->prepare("SELECT * FROM car WHERE customer_id = :id");
+
+    $show->bindValue(":id", $id, PDO::PARAM_INT);
+
+    $show->execute();
+    $data = $show->fetchAll(PDO::FETCH_ASSOC);
+
+    return $data;
+  } catch (PDOException $pdoex) {
+    returnError($pdoex);
+  }
+}
+
+function getCustomer($id)
+{
+  try {
+    $db = openDb();
+
+    $show = $db->prepare("SELECT * FROM customer WHERE id = :id");
+
+    $show->bindValue(":id", $id, PDO::PARAM_INT);
+
+    $show->execute();
+    $data = $show->fetchAll(PDO::FETCH_ASSOC);
+
+    return  $data;
+  } catch (PDOException $pdoex) {
+    returnError($pdoex);
+  }
+}
