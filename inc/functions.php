@@ -63,9 +63,28 @@ function getCustomer($id)
     $show->bindValue(":id", $id, PDO::PARAM_INT);
 
     $show->execute();
-    $data = $show->fetchAll(PDO::FETCH_ASSOC);
+    $data = $show->fetch(PDO::FETCH_ASSOC);
 
     return  $data;
+  } catch (PDOException $pdoex) {
+    returnError($pdoex);
+  }
+}
+
+
+function getTires($id)
+{
+  try {
+    $db = openDb();
+
+    $show = $db->prepare("SELECT * FROM tires WHERE car_id = :id");
+
+    $show->bindValue(":id", $id, PDO::PARAM_INT);
+
+    $show->execute();
+    $data = $show->fetchAll(PDO::FETCH_ASSOC);
+
+    return $data;
   } catch (PDOException $pdoex) {
     returnError($pdoex);
   }

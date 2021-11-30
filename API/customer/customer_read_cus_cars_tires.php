@@ -19,10 +19,15 @@ try {
   $cars_id = [];
   foreach ($cars as $row) {
     array_push($data, $row);
-    array_push($data, $row['id']);
+    array_push($cars_id, $row['id']);
   };
 
-  foreach ($cars_id as $row) {
+  foreach ($cars_id as $car_id) {
+    $tires = getTires($car_id);
+    $tires_id = [];
+    foreach ($tires as $tire) {
+      array_push($data, $tire);
+    };
   };
 
   header('HTTP/1.1 200 OK');
