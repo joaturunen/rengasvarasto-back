@@ -9,7 +9,7 @@ $id = filter_var($input->cus_id, FILTER_SANITIZE_NUMBER_INT);
 
 try {
 
-  $id = 2;
+  //$id = 2;
 
   $customer = getCustomer($id);
 
