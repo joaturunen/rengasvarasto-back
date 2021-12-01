@@ -7,9 +7,9 @@ $input = json_decode(file_get_contents('php://input'));
 
 $id = filter_var($input->cus_id, FILTER_SANITIZE_NUMBER_INT);
 
-$data = [];
-
 try {
+
+  //$id = 1;
 
   $customer = getCustomer($id);
 

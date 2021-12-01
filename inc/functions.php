@@ -37,6 +37,8 @@ function returnError(PDOException $pdoex): void
 
 function getCars($id)
 {
+  $db = null;
+
   try {
     $db = openDb();
 
@@ -55,6 +57,8 @@ function getCars($id)
 
 function getCustomer($id)
 {
+  $db = null;
+
   try {
     $db = openDb();
 
@@ -74,6 +78,8 @@ function getCustomer($id)
 
 function getTires($id)
 {
+  $db = null;
+
   try {
     $db = openDb();
 
@@ -93,6 +99,8 @@ function getTires($id)
 
 function getShelf_amount($id)
 {
+  $db = null;
+
   try {
     $db = openDb();
 
@@ -111,6 +119,8 @@ function getShelf_amount($id)
 
 function getShelfs()
 {
+  $db = null;
+
   try {
 
     $db = openDb();
@@ -128,6 +138,8 @@ function getShelfs()
 
 function getShelfSlots($id)
 {
+  $db = null;
+
   try {
 
     $db = openDb();
@@ -146,6 +158,8 @@ function getShelfSlots($id)
 
 function getSlot($id)
 {
+  $db = null;
+
   try {
 
     $db = openDb();
@@ -163,7 +177,10 @@ function getSlot($id)
 }
 
 function getCalculateSlots($id)
-{ {
+{ 
+  $db = null;
+
+  {
     try {
 
       $db = openDb();
