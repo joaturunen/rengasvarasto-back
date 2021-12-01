@@ -89,3 +89,94 @@ function getTires($id)
     returnError($pdoex);
   }
 }
+
+
+function getShelf_amount($id)
+{
+  try {
+    $db = openDb();
+
+    $show = $db->prepare("SELECT * FROM slots WHERE shelf_id = :id");
+
+    $show->bindValue(":id", $id, PDO::PARAM_INT);
+
+    $show->execute();
+    $data = $show->fetchAll(PDO::FETCH_ASSOC);
+
+    return $data;
+  } catch (PDOException $pdoex) {
+    returnError($pdoex);
+  }
+}
+
+function getShelfs()
+{
+  try {
+
+    $db = openDb();
+    $show = $db->prepare("SELECT id FROM shelf");
+
+    $show->execute();
+    $data = $show->fetchAll(PDO::FETCH_ASSOC);
+
+
+    return $data;
+  } catch (PDOException $pdoex) {
+    returnError($pdoex);
+  }
+}
+
+function getShelfSlots($id)
+{
+  try {
+
+    $db = openDb();
+    $show = $db->prepare("SELECT id FROM slot WHERE shelf_id = :id");
+
+    $show->bindValue(":id", $id, PDO::PARAM_INT);
+
+    $show->execute();
+    $data = $show->fetchAll(PDO::FETCH_ASSOC);
+
+    return $data;
+  } catch (PDOException $pdoex) {
+    returnError($pdoex);
+  }
+}
+
+function getSlot($id)
+{
+  try {
+
+    $db = openDb();
+    $show = $db->prepare("SELECT COUNT(*) FROM slot_order WHERE slot_id = :id AND tires_id IS NOT NULL");
+
+    $show->bindValue(":id", $id, PDO::PARAM_INT);
+
+    $show->execute();
+    $data = $show->fetchAll(PDO::FETCH_ASSOC);
+
+    return $data;
+  } catch (PDOException $pdoex) {
+    returnError($pdoex);
+  }
+}
+
+function getCalculateSlots($id)
+{ {
+    try {
+
+      $db = openDb();
+      $show = $db->prepare("SELECT COUNT(id) FROM slot WHERE shelf_id = :id");
+
+      $show->bindValue(":id", $id, PDO::PARAM_INT);
+
+      $show->execute();
+      $data = $show->fetchAll(PDO::FETCH_ASSOC);
+
+      return $data;
+    } catch (PDOException $pdoex) {
+      returnError($pdoex);
+    }
+  }
+}
