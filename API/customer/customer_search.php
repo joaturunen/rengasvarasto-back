@@ -7,10 +7,6 @@ require_once '../../inc/functions.php';
 $input = json_decode(file_get_contents('php://input'));
 $searchCriteria = filter_var($input->searchCriteria, FILTER_SANITIZE_STRING);
 
-// $url = parse_url(filter_input(INPUT_SERVER,'PATH_INFO'),PHP_URL_PATH);
-// $parameters = explode('/',$url);
-// $searchCriteria = $parameters[1];
-
 try {
     $db = openDb();
 
@@ -26,8 +22,6 @@ try {
     header('HTTP/1.1 200 OK');
   
     echo json_encode($data);
-
-    //selectAsJson($db, $sql);
 
 } catch (PDOException $pdoex) {
     returnError($pdoex);
