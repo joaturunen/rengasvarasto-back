@@ -37,6 +37,8 @@ function returnError(PDOException $pdoex): void
 
 function getCars($id)
 {
+  $db = null;
+
   try {
     $db = openDb();
 
@@ -55,6 +57,8 @@ function getCars($id)
 
 function getCustomer($id)
 {
+  $db = null;
+
   try {
     $db = openDb();
 
@@ -74,6 +78,8 @@ function getCustomer($id)
 
 function getTires($id)
 {
+  $db = null;
+
   try {
     $db = openDb();
 
@@ -87,5 +93,107 @@ function getTires($id)
     return $data;
   } catch (PDOException $pdoex) {
     returnError($pdoex);
+  }
+}
+
+
+function getShelf_amount($id)
+{
+  $db = null;
+
+  try {
+    $db = openDb();
+
+    $show = $db->prepare("SELECT * FROM slots WHERE shelf_id = :id");
+
+    $show->bindValue(":id", $id, PDO::PARAM_INT);
+
+    $show->execute();
+    $data = $show->fetchAll(PDO::FETCH_ASSOC);
+
+    return $data;
+  } catch (PDOException $pdoex) {
+    returnError($pdoex);
+  }
+}
+
+function getShelfs()
+{
+  $db = null;
+
+  try {
+
+    $db = openDb();
+    $show = $db->prepare("SELECT id FROM shelf");
+
+    $show->execute();
+    $data = $show->fetchAll(PDO::FETCH_ASSOC);
+
+
+    return $data;
+  } catch (PDOException $pdoex) {
+    returnError($pdoex);
+  }
+}
+
+function getShelfSlots($id)
+{
+  $db = null;
+
+  try {
+
+    $db = openDb();
+    $show = $db->prepare("SELECT id FROM slot WHERE shelf_id = :id");
+
+    $show->bindValue(":id", $id, PDO::PARAM_INT);
+
+    $show->execute();
+    $data = $show->fetchAll(PDO::FETCH_ASSOC);
+
+    return $data;
+  } catch (PDOException $pdoex) {
+    returnError($pdoex);
+  }
+}
+
+function getSlot($id)
+{
+  $db = null;
+
+  try {
+
+    $db = openDb();
+    $show = $db->prepare("SELECT COUNT(*) FROM slot_order WHERE slot_id = :id AND tires_id IS NOT NULL");
+
+    $show->bindValue(":id", $id, PDO::PARAM_INT);
+
+    $show->execute();
+    $data = $show->fetchAll(PDO::FETCH_ASSOC);
+
+    return $data;
+  } catch (PDOException $pdoex) {
+    returnError($pdoex);
+  }
+}
+
+function getCalculateSlots($id)
+{ 
+  $db = null;
+
+  {
+    try {
+
+      $db = openDb();
+      $show = $db->prepare("SELECT COUNT(id) FROM slot WHERE shelf_id = :id");
+
+      $show->bindValue(":id", $id, PDO::PARAM_INT);
+
+      $show->execute();
+      $data = $show->fetchAll(PDO::FETCH_ASSOC);
+
+      return $data;
+    } catch (PDOException $pdoex) {
+      returnError($pdoex);
+    }
   }
 }

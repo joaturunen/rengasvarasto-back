@@ -22,7 +22,6 @@ try {
     } else {
       $taken++;
     };
-
     $letsCount++;
   }
 
