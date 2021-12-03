@@ -24,7 +24,7 @@ insert into orders (orderdate, customer_id, employee_id) values
 ('17-11-2021 12:10:10', 2, 4),
 ('17-11-2021 12:20:20', 3, 3),
 ('17-11-2021 12:30:30', 4, 5),
-('17-11-2021 12:40:40', 5, 4);
+('17-11-2021 12:40:40', 5, 4),
 ('30-11-2021 19:20:20', 3, 3),
 ('01-12-2021 07:20:20', 3, 4),
 ('02-12-2021 10:20:20', 3, 5);
@@ -44,17 +44,17 @@ insert into car (register, brand, model, customer_id) values
 ('PSI-254', 'Lamborghini', 'Diablo', 3),
 ('LDH-298', 'Maserati', 'Ghibli', 5),
 ('HGP-379', 'Aston Martin', 'Zagato', 2),
-('LOL-666', 'Lada', 'Riva', 4);
+('LOL-666', 'Lada', 'Riva', 4),
 ('TES-123', 'Tesla', 'S', 3),
 ('AOR-999', 'Alfa Romeo', 'Scighera', 3),
-('VEC-1', 'Vector', 'W8', 3)
+('VEC-1', 'Vector', 'W8', 3);
 
 insert into tires (car_id, brand, model, type, hubcups, groovefl, groovefr, groovebl, groovebr, tiresize, tirebolt, text, rims, servicedate, info) values
 (1,'Firestone', 'etu:215/45ZR17, taka:245/40ZR17', 'kesä', true, 4, 4, 4, 4, 17, 'etu:5x15, taka 5x20', 'Renkaat hyvässä kunnossa', 'Maserati x 4', '17-11-2120 13:00:10', ''),
 (2,'Bridgestone', 'etu:245/35R20, taka:285/35R20', 'talvi', true, 5, 5, 5, 5, 20, 'etu:5x15, taka 5x20', 'Renkaat hyvässä kunnossa', 'Ferrari x 4', '17-11-2120 14:20:10', ''),
 (3,'Michelin', 'etu:245/40R17, taka:335/35R17', 'talvi', true, 5, 5, 5, 5, 17, 'etu:5x15, taka 5x20', 'Renkaat hyvässä kunnossa', 'Lamborghini x 4', '17-11-2120 15:40:10', ''),
 (4,'Goodyear', 'etu:245/40R17, taka:335/35R17', 'kesä', true, 4, 4, 4, 4, 17, 'etu:5x15, taka 5x20', 'Renkaat hyvässä kunnossa', 'Aston Martin x 4', '17-11-2120 16:15:10', ''),
-(5, 'Purukumit', '195/32R14', 'kitka', false, 1, 1, 1, 1, 14, '5x10', 'Renkaat on mukavan sileät, poliisi-setä tykkää', 'Latukkax4', '17-11-2120 16:55:10', 'Asiakkaan kannattaisi ostaa uudet renkaat');
+(5, 'Purukumit', '195/32R14', 'kitka', false, 1, 1, 1, 1, 14, '5x10', 'Renkaat on mukavan sileät, poliisi-setä tykkää', 'Latukkax4', '17-11-2120 16:55:10', 'Asiakkaan kannattaisi ostaa uudet renkaat'),
 (6,'Tulikivi', 'etu:245/40R17, taka:335/35R17', 'kesä', true, 6, 3.5, 6, 4, 17, 'etu:5x18, taka 5x20', 'Renkaat are noice!', 'Tesla x 4', '30-11-2120 18:55:10', 'Sähköpirssin renkaat ei toimi sähköllä'),
 (7,'Siltakivi', 'etu:245/40R17, taka:335/35R17', 'talvi', true, 5, 3.3, 5, 3.2, 19, 'etu:5x15, taka 5x20', 'Renkaat toispuoleiset', 'Alfa Romeo x 4', '01-12-2120 07:15:10', 'Ei kannata mennä mutkiin ovi eellä'),
 (8,'Hyvävuosi', 'etu:245/40R17, taka:335/35R17', 'kitka', true, 2.2, 2.2, 5, 3.2, 19, 'etu:5x15, taka 5x20', 'Marketeilla rallattu', 'Vector x 4', '02-12-2120 03:00:10', 'Mukava vaihtaa renkaita näin kolmelta aamuyöstä');
