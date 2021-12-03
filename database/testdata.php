@@ -55,9 +55,9 @@ insert into tires (car_id, brand, model, type, hubcups, groovefl, groovefr, groo
 (3,'Michelin', 'etu:245/40R17, taka:335/35R17', 'talvi', true, 5, 5, 5, 5, 17, 'etu:5x15, taka 5x20', 'Renkaat hyvässä kunnossa', 'Lamborghini x 4', '17-11-2120 15:40:10', ''),
 (4,'Goodyear', 'etu:245/40R17, taka:335/35R17', 'kesä', true, 4, 4, 4, 4, 17, 'etu:5x15, taka 5x20', 'Renkaat hyvässä kunnossa', 'Aston Martin x 4', '17-11-2120 16:15:10', ''),
 (5, 'Purukumit', '195/32R14', 'kitka', false, 1, 1, 1, 1, 14, '5x10', 'Renkaat on mukavan sileät, poliisi-setä tykkää', 'Latukkax4', '17-11-2120 16:55:10', 'Asiakkaan kannattaisi ostaa uudet renkaat'),
-(6,'Tulikivi', 'etu:245/40R17, taka:335/35R17', 'kesä', true, 6, 3.5, 6, 4, 17, 'etu:5x18, taka 5x20', 'Renkaat are noice!', 'Tesla x 4', '30-11-2120 18:55:10', 'Sähköpirssin renkaat ei toimi sähköllä'),
-(7,'Siltakivi', 'etu:245/40R17, taka:335/35R17', 'talvi', true, 5, 3.3, 5, 3.2, 19, 'etu:5x15, taka 5x20', 'Renkaat toispuoleiset', 'Alfa Romeo x 4', '01-12-2120 07:15:10', 'Ei kannata mennä mutkiin ovi eellä'),
-(8,'Hyvävuosi', 'etu:245/40R17, taka:335/35R17', 'kitka', true, 2.2, 2.2, 5, 3.2, 19, 'etu:5x15, taka 5x20', 'Marketeilla rallattu', 'Vector x 4', '02-12-2120 03:00:10', 'Mukava vaihtaa renkaita näin kolmelta aamuyöstä');
+(6, 'Tulikivi', 'etu:245/40R17, taka:335/35R17', 'kesä', true, 6, 3.5, 6, 4, 17, 'etu:5x18, taka 5x20', 'Renkaat are noice!', 'Tesla x 4', '30-11-2120 18:55:10', 'Sähköpirssin renkaat ei toimi sähköllä'),
+(7, 'Siltakivi', 'etu:245/40R17, taka:335/35R17', 'talvi', true, 5, 3.3, 5, 3.2, 19, 'etu:5x15, taka 5x20', 'Renkaat toispuoleiset', 'Alfa Romeo x 4', '01-12-2120 07:15:10', 'Ei kannata mennä mutkiin ovi eellä'),
+(8, 'Hyvävuosi', 'etu:245/40R17, taka:335/35R17', 'kitka', true, 2.2, 2.2, 5, 3.2, 19, 'etu:5x15, taka 5x20', 'Marketeilla rallattu', 'Vector x 4', '02-12-2120 03:00:10', 'Mukava vaihtaa renkaita näin kolmelta aamuyöstä');
 
 UPDATE slot_order SET tires_id = 1 WHERE slot_id = 13;
 UPDATE slot_order SET tires_id = 2 WHERE slot_id = 14; 
