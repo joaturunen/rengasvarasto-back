@@ -40,7 +40,7 @@ try {
   $show->execute();
   $data = $show->fetchAll(PDO::FETCH_ASSOC);
 
-  echo header('HTTP/1.1 200 OK');
+  header('HTTP/1.1 200 OK');
   $data = array('id' => $id2);
   echo json_encode($data);
 } catch (PDOException $pdoex) {
