@@ -83,7 +83,27 @@ function getTires($id)
   try {
     $db = openDb();
 
-    $show = $db->prepare("SELECT * FROM tires WHERE car_id = :id");
+    $show = $db->prepare("SELECT tires.id, 
+    tires.car_id, 
+    car.register as car_register,
+    tires.brand,
+    tires.model,
+    tires.type,
+    tires.hubcups,
+    tires.groovefl,
+    tires.groovefr,
+    tires.groovebl,
+    tires.groovebr,
+    tires.tiresize,
+    tires.tirebolt,
+    tires.text,
+    tires.rims,
+    tires.servicedate,
+    tires.info
+    FROM car
+    LEFT JOIN tires
+    on tires.id = tires.car_id
+     WHERE car.id = :id");
 
     $show->bindValue(":id", $id, PDO::PARAM_INT);
 

@@ -11,12 +11,6 @@ $id = filter_var($input->id, FILTER_SANITIZE_NUMBER_INT);
 
 try {
 
-  if($id === '4'){
-    $id2 = $id;
-    $id = 4;
-  }
-    
-
   $db = openDb();
 
   $show = $db->prepare("SELECT
@@ -41,7 +35,6 @@ try {
   $data = $show->fetchAll(PDO::FETCH_ASSOC);
 
   header('HTTP/1.1 200 OK');
-  $data = array('id' => $id2);
   echo json_encode($data);
 } catch (PDOException $pdoex) {
   returnError($pdoex);
