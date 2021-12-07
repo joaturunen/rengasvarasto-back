@@ -177,23 +177,86 @@ function getSlot($id)
 }
 
 function getCalculateSlots($id)
-{ 
+{
   $db = null;
+  try {
 
-  {
-    try {
+    $db = openDb();
+    $show = $db->prepare("SELECT COUNT(*) FROM slot WHERE shelf_id = :id");
 
-      $db = openDb();
-      $show = $db->prepare("SELECT COUNT(id) FROM slot WHERE shelf_id = :id");
+    $show->bindValue(":id", $id, PDO::PARAM_INT);
 
-      $show->bindValue(":id", $id, PDO::PARAM_INT);
+    $show->execute();
+    $data = $show->fetchAll(PDO::FETCH_ASSOC);
 
-      $show->execute();
-      $data = $show->fetchAll(PDO::FETCH_ASSOC);
+    return $data[0]['count'];
+  } catch (PDOException $pdoex) {
+    returnError($pdoex);
+  }
+}
 
-      return $data;
-    } catch (PDOException $pdoex) {
-      returnError($pdoex);
-    }
+function getCalculateSlotsNull($id)
+{
+  $db = null;
+  try {
+
+    $db = openDb();
+    $show = $db->prepare("SELECT
+      COUNT(s.slot_id)
+      FROM slot_order s 
+      LEFT JOIN slot 
+      ON slot.id = s.slot_id 
+      LEFT JOIN shelf 
+      ON shelf.id = slot.shelf_id 
+      WHERE shelf.id = :id AND s.tires_id IS NULL");
+
+    $show->bindValue(":id", $id, PDO::PARAM_INT);
+
+    $show->execute();
+    $data = $show->fetchAll(PDO::FETCH_ASSOC);
+
+    return $data[0]['count'];
+  } catch (PDOException $pdoex) {
+    returnError($pdoex);
+  }
+}
+
+
+function getCalculateAllSlotsNull()
+{
+  $db = null;
+  try {
+    $db = openDb();
+    $show = $db->prepare("SELECT
+      COUNT(slot_id)
+      FROM slot_order 
+      WHERE tires_id IS NULL");
+
+
+    $show->execute();
+    $data = $show->fetchAll(PDO::FETCH_ASSOC);
+
+    return $data[0]['count'];
+  } catch (PDOException $pdoex) {
+    returnError($pdoex);
+  }
+}
+
+function getCalculateAllSlotsNotNull()
+{
+  $db = null;
+  try {
+    $db = openDb();
+    $show = $db->prepare("SELECT
+      COUNT(slot_id)
+      FROM slot_order 
+      WHERE tires_id IS NOT NULL");
+
+    $show->execute();
+    $data = $show->fetchAll(PDO::FETCH_ASSOC);
+
+    return $data[0]['count'];
+  } catch (PDOException $pdoex) {
+    returnError($pdoex);
   }
 }
