@@ -83,7 +83,17 @@ function getTires($id)
   try {
     $db = openDb();
 
-    $show = $db->prepare("SELECT tires.id, 
+    // COUNT(s.slot_id)
+    // FROM slot_order s 
+    // LEFT JOIN slot 
+    // ON slot.id = s.slot_id 
+    // LEFT JOIN shelf 
+    // ON shelf.id = slot.shelf_id 
+    // WHERE shelf.id = :id AND s.tires_id IS NULL");
+
+
+    $show = $db->prepare("SELECT
+    tires.id, 
     tires.car_id, 
     car.register as car_register,
     tires.brand,
@@ -99,11 +109,22 @@ function getTires($id)
     tires.text,
     tires.rims,
     tires.servicedate,
-    tires.info
+    tires.info,
+    slot.id as slot_id,
+    shelf.id as shelf_id,
+    warehouse.id as warehouse_id
     FROM car
     LEFT JOIN tires
-    on tires.id = tires.car_id
-     WHERE car.id = :id");
+    ON tires.car_id = car.id
+    LEFT JOIN slot_order
+    ON slot_order.tires_id = tires.id
+    LEFT JOIN slot
+    ON slot.id = slot_order.slot_id
+    LEFT JOIN shelf
+    ON shelf.id = slot.shelf_id
+    LEFT JOIN warehouse
+    ON warehouse.id = shelf.warehouse_id
+    WHERE car.id = :id");
 
     $show->bindValue(":id", $id, PDO::PARAM_INT);
 
