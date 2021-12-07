@@ -2,7 +2,7 @@
 require_once '../../inc/headers.php';
 require_once '../../inc/functions.php';
 
-$db = null;
+//$db = null;
 
 // Get raw posted data
 $input = json_decode(file_get_contents("php://input"));
