@@ -5,7 +5,7 @@ require_once '../../inc/functions.php';
 
 $input = json_decode(file_get_contents('php://input'));
 
-$id = filter_var($input->cus_id, FILTER_SANITIZE_NUMBER_INT);
+$id = intval(filter_var($input->cus_id, FILTER_SANITIZE_NUMBER_INT));
 
 try {
 

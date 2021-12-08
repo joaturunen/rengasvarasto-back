@@ -7,10 +7,10 @@ require_once '../../inc/functions.php';
 // Get raw posted data
 $input = json_decode(file_get_contents("php://input"));
 
-$register = filter_var($input->register, FILTER_SANITIZE_STRING);
-$brand = filter_var($input->brand, FILTER_SANITIZE_STRING);
-$model = filter_var($input->model, FILTER_SANITIZE_STRING);
-$customer_id = filter_var($input->customer_id, FILTER_SANITIZE_NUMBER_INT);
+$register = strval(filter_var($input->register, FILTER_SANITIZE_STRING));
+$brand = strval(filter_var($input->brand, FILTER_SANITIZE_STRING));
+$model = strval(filter_var($input->model, FILTER_SANITIZE_STRING));
+$customer_id = intval(filter_var($input->customer_id, FILTER_SANITIZE_NUMBER_INT));
 
 try {
   //instantiate DB & connect

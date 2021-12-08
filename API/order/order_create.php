@@ -6,8 +6,8 @@ $db = null;
 
 $input = json_decode(file_get_contents('php://input'));
 
-$cus_id = filter_var($input->cus_id, FILTER_SANITIZE_NUMBER_INT);
-$employee_id = filter_var($input->employee_id, FILTER_SANITIZE_NUMBER_INT);
+$cus_id = intval(filter_var($input->cus_id, FILTER_SANITIZE_NUMBER_INT));
+$employee_id = intval(filter_var($input->employee_id, FILTER_SANITIZE_NUMBER_INT));
 $cart = $input->cart;
 
 try {
