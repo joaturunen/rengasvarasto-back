@@ -34,7 +34,26 @@ try {
 
   $show->bindValue(":id", $id, PDO::PARAM_INT);
   $show->execute();
-  $data = $show->fetchAll(PDO::FETCH_ASSOC);
+  $slots = $show->fetchAll(PDO::FETCH_ASSOC);
+
+  $shelfs = getShelfs();
+
+  $next = 0;
+  $previous = 0;
+  for($i = 0; $i < sizeof($shelfs);$i++){
+    if($shelfs[$i]['id'] === $id){
+      if($i !== 0){
+        $previous = $shelfs[$i - 1]['id'];
+      }
+      $testNext = $i + 1;
+      if($testNext !== sizeof($shelfs)){
+        $next = $shelfs[$testNext]['id'];
+    }
+    }
+
+  };
+
+  $data = array("slots" => $slots, "next" => $next, "previous" => $previous);
 
   // $data = array('sql' => $show);
 
