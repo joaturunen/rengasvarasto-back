@@ -5,7 +5,9 @@ require_once '../../inc/functions.php';
 //$db = null;
 
 // Get raw posted data
-$input = json_decode(file_get_contents("php://input"));
+$inputJSON = file_get_contents("php://input");
+
+$input = json_decode($inputJSON, TRUE);
 
 $register = strval(filter_var($input->register, FILTER_SANITIZE_STRING));
 $brand = strval(filter_var($input->brand, FILTER_SANITIZE_STRING));
@@ -15,6 +17,11 @@ $customer_id = intval(filter_var($input->customer_id, FILTER_SANITIZE_NUMBER_INT
 try {
   //instantiate DB & connect
   $db = openDb();
+
+  $register = "fsdf3331";
+  $brand = "fsdf";
+  $model = "fsdf";
+  $customer_id = 1;
 
   // Create query
   $sql = "INSERT INTO car (register, brand, model, customer_id)
