@@ -17,10 +17,6 @@ $customer_id = intval(filter_var($input->customer_id, FILTER_SANITIZE_NUMBER_INT
 try {
   //instantiate DB & connect
   $db = openDb();
-
-  $register = "fsdf3331";
-  $brand = "fsdf";
-  $model = "fsdf";
   $customer_id = 1;
 
   // Create query
