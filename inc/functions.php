@@ -301,3 +301,21 @@ function getCalculateAllSlotsNotNull()
     returnError($pdoex);
   }
 }
+
+
+function addCarForCustomer($customer_id, $register, $brand, $model){
+  {
+    $db = null;
+    try {
+      $db = openDb();
+      $sql = "INSERT INTO car (register, brand, model, customer_id)
+      VALUES ('$register','$brand', '$model', '$customer_id')";
+
+      $car_id = executeInsert($db, $sql);
+  
+      return $car_id;
+    } catch (PDOException $pdoex) {
+      returnError($pdoex);
+    }
+  }
+}

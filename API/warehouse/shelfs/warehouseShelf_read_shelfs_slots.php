@@ -17,7 +17,10 @@ try {
     warehouse.id as warehouse_id,
     shelf.id as shelf_id,
     slot.id as slot_id,
-    tires.id as tires_id
+    tires.id as tires_id,
+    tires.brand as tires_brand,
+    tires.type as tires_type,
+    tires.text as tires_text
     FROM warehouse
     LEFT JOIN shelf
     ON shelf.warehouse_id = warehouse.id

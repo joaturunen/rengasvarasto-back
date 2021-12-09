@@ -7,14 +7,13 @@ $db = null;
 try {
   $db = openDb();
   $sql = "SELECT
+  customer.id as customer_id,
+  customer.firstname as customer_firstname,
+  customer.lastname as customer_lastname,
   orders.id,
-  orders.orderdate,
-  customer.lastname, 
-  customer.firstname,
-  car.register
-  FROM customer, car, orders, ordertable
-  WHERE customer.id = car.customer_id
-  AND customer.id = orders.customer_id
+  orders.orderdate
+  FROM customer, orders, ordertable
+  WHERE customer.id = orders.customer_id
   AND orders.id = ordertable.orders_id";
 
   $show = $db->query($sql);
