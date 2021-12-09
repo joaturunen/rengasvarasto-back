@@ -8,13 +8,13 @@ try {
   $db = openDb();
   $sql = "SELECT
   customer.id as customer_id,
+  customer.firstname as customer_firstname,
+  customer.lastname as customer_lastname,
   orders.id,
-  orders.orderdate,
-  services.service 
-  FROM customer, orders, ordertable, services
+  orders.orderdate
+  FROM customer, orders, ordertable
   WHERE customer.id = orders.customer_id
-  AND orders.id = ordertable.orders_id
-  AND ordertable.services_id = services.id";
+  AND orders.id = ordertable.orders_id";
 
   $show = $db->query($sql);
 
