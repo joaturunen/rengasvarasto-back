@@ -45,7 +45,7 @@ email varchar(50) not null unique,
 address varchar(50),
 zipcode char(5),
 city varchar(25),
-customersaved timestamp default current_timestamp,
+customersaved date default current_timestamp,
 employee_id int not null,                          
 foreign key (employee_id) references employee(id)
 on delete restrict
@@ -57,7 +57,7 @@ employee_id
 
 create table orders (
 id smallserial primary key,
-orderdate timestamp default current_timestamp,
+orderdate date default current_timestamp,
 customer_id int not null,
 employee_id int not null,
 foreign key (customer_id) references customer(id),
@@ -76,7 +76,8 @@ price int
 );
 
 create table ordertable (
-orders_id int primary key, 
+  id smallserial primary key,
+orders_id int not null, 
 services_id int not null,
 foreign key (orders_id) references orders(id),
 foreign key (services_id) references services(id)
