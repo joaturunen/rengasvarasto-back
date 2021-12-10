@@ -10,7 +10,7 @@ $id = filter_var($input->id, FILTER_SANITIZE_NUMBER_INT);
 
 try {
   $db = openDb();
-  $sql = ("DELETE FROM car WHERE id = :id");
+  $sql = ("DELETE FROM tires WHERE id = :id");
 
   $del = $db->prepare($sql);
   $del->bindValue(":id", $id, PDO::PARAM_INT);
