@@ -15,13 +15,21 @@ try {
   //instantiate DB & connect
   $db = openDb();
 
-  $sql = "INSERT INTO car (register, brand, model, customer_id) 
-    VALUES ('$register', '$brand', '$model', '$customer_id')";
+  // $sql = "INSERT INTO car (register, brand, model, customer_id) 
+  //   VALUES ('$register', '$brand', '$model', '$customer_id')";
 
-  $car_id = executeInsert($db, $sql);
+  // $car_id = executeInsert($db, $sql);
+  // $tires_id = addTires($car_id);
+
+  $car_id = addCarForCustomer($customer_id, $register, $brand, $model);
+  $tires_id = addTires($car_id);
 
   header('HTTP/1.1 200 OK');
-  $data = array('id' => $car_id, 'register' => $register, 'brand' => $brand, 'model' => $model, 'customer_id' => $customer_id);
+  $data = array('id' => $car_id, 
+    'register' => $register, 
+    'brand' => $brand, 
+    'model' => $model, 
+    'customer_id' => $customer_id);
   echo json_encode($data);
 } catch (PDOException $pdoex) {
   returnError($pdoex);
