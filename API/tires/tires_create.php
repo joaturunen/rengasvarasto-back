@@ -6,7 +6,6 @@ require_once '../../inc/functions.php';
 $input = json_decode(file_get_contents('php://input'));
 
 $car_id = filter_var($input->car_id, FILTER_SANITIZE_NUMBER_INT);
-//$slot_id = filter_var($input->slot_id, FILTER_SANITIZE_NUMBER_INT); tätä ei oo tietokannassa tires-taulussa
 $brand = filter_var($input->brand, FILTER_SANITIZE_STRING);
 $model = filter_var($input->model, FILTER_SANITIZE_STRING);
 $type = filter_var($input->type, FILTER_SANITIZE_STRING);
