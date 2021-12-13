@@ -19,15 +19,6 @@ insert into customer (firstname, lastname, phone, email, address, zipcode, city,
 ('Katsa', 'Mäkis', '0414234567', 'katsa@koulu.org', 'Katsanmäki 4', '10004', 'Katsala', 4),
 ('Hantsa', 'Hirviölä', '0415234567', 'hantsa@koulu.org', 'Hantsankolo 5', '10005', 'Hantsala', 4);
 
-insert into orders (customer_id, employee_id) values
-(1, 3),
-(2, 4),
-(3, 3),
-(4, 5),
-(5, 4),
-(3, 3),
-(3, 4),
-(3, 5);
 
 insert into category (name) values
 ('kausisäilytys'),
@@ -44,15 +35,13 @@ insert into services (service, price, category_id, season) values
 ('renkaanvaihto ja kesäsäilytys', 80.00, 1, 'kesä'),
 ('renkaanvaihto ja talvisäilytys', 95.00, 1, 'talvi');
 
-insert into ordertable (orders_id, services_id) values
-(1, 4), (2, 2), (3, 5), (4, 1), (5, 3), (6, 3), (7, 4), (8, 4);
 
 insert into car (register, brand, model, customer_id) values
 ('KGU-848', 'Ferrari', 'Roma', 1),
-('PSI-254', 'Lamborghini', 'Diablo', 3),
-('LDH-298', 'Maserati', 'Ghibli', 5),
-('HGP-379', 'Aston Martin', 'Zagato', 2),
-('LOL-666', 'Lada', 'Riva', 4),
+('PSI-254', 'Lamborghini', 'Diablo', 2),
+('LDH-298', 'Maserati', 'Ghibli', 3),
+('HGP-379', 'Aston Martin', 'Zagato', 4),
+('LOL-666', 'Lada', 'Riva', 5),
 ('TES-123', 'Tesla', 'S', 3),
 ('AOR-999', 'Alfa Romeo', 'Scighera', 3),
 ('VEC-1', 'Vector', 'W8', 3);
@@ -66,6 +55,20 @@ insert into tires (car_id, brand, model, type, hubcups, groovefl, groovefr, groo
 (6, 'Tulikivi', 'etu:245/40R17, taka:335/35R17', 'kesä', true, 6, 3.5, 6, 4, 17, 'etu:5x18, taka 5x20', 'Renkaat are noice!', 'Tesla x 4', '30-11-2120 18:55:10', 'Sähköpirssin renkaat ei toimi sähköllä'),
 (7, 'Siltakivi', 'etu:245/40R17, taka:335/35R17', 'talvi', true, 5, 3.3, 5, 3.2, 19, 'etu:5x15, taka 5x20', 'Renkaat toispuoleiset', 'Alfa Romeo x 4', '01-12-2120 07:15:10', 'Ei kannata mennä mutkiin ovi eellä'),
 (8, 'Hyvävuosi', 'etu:245/40R17, taka:335/35R17', 'kitka', true, 2.2, 2.2, 5, 3.2, 19, 'etu:5x15, taka 5x20', 'Marketeilla rallattu', 'Vector x 4', '02-12-2120 03:00:10', 'Mukava vaihtaa renkaita näin kolmelta aamuyöstä');
+
+
+insert into orders (customer_id, employee_id, tires_int) values
+(1, 3, 1),
+(2, 4, 2),
+(3, 3, 3),
+(4, 5, 4),
+(5, 4, 5),
+(3, 3, 6),
+(3, 4, 7),
+(3, 5, 8);
+
+insert into ordertable (orders_id, services_id) values
+(1, 4), (2, 5), (3, 5), (4, 5), (5, 6), (6, 7), (7, 4), (8, 4);
 
 UPDATE slot_order SET tires_id = 1 WHERE slot_id = 13;
 UPDATE slot_order SET tires_id = 2 WHERE slot_id = 14; 

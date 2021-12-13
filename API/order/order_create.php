@@ -27,17 +27,17 @@ try {
       if($category_id === 1){
 
         $stmt = $db->prepare("SELECT slot_id FROM slot_order WHERE tires_id IS NULL");
-        $slot_id = $stmt->fetch();
+        $stmt->execute();
+        $slot_idAr = $stmt->fetch();
 
-        // $show->execute();
-        // $data = $show->fetchAll(PDO::FETCH_ASSOC);
+        $slot_id = $slot_idAr[0];
 
-        // $sql = "UPDATE slot_order SET ($tires_id) where slot_id = ";
-        // $slot_id = executeInsert($db, $sql);
+        $sql = "UPDATE slot_order SET tires_id = $tires_id where slot_id = $slot_id";
+        $slot_id = executeInsert($db, $sql);
       }
     }
 
-     $db->commit();
+    $db->commit();
 
     header('HTTP/1.1 200 OK');
     $data = array('id' => $cus_id,
