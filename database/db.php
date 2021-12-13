@@ -150,14 +150,14 @@ foreign key (slot_id) references slot(id)
 create table orders (
 id smallserial primary key,
 orderdate date default current_timestamp,
-tires_int int,
+tires_id int,
 info text,
 customer_id int not null,
 employee_id int not null,
 foreign key (customer_id) references customer(id),
 foreign key (employee_id) references employee(id)
 on delete restrict,
-foreign key (tires_int) references tires(id)
+foreign key (tires_id) references tires(id)
 on delete restrict
 );
 

@@ -14,27 +14,28 @@ try {
      $db = openDb();
      $db->beginTransaction();
 
-    $sql = "INSERT INTO orders (customer_id, employee_id) VALUES ('$cus_id', '$employee_id')";
-    $order_id = executeInsert($db, $sql);
+    if($tires_id === 0){
+      $sql = "INSERT INTO orders (customer_id, employee_id) VALUES ($cus_id, $employee_id)";
+      $order_id = executeInsert($db, $sql);
+    } else {
+      $sql = "INSERT INTO orders (customer_id, employee_id, tires_id) VALUES ($cus_id, $employee_id, $tires_id)";
+      $order_id = executeInsert($db, $sql);
+      
+      $stmt = $db->prepare("SELECT slot_id FROM slot_order WHERE tires_id IS NULL");
+      $stmt->execute();
+      $slot_idAr = $stmt->fetch();
+
+      $slot_id = $slot_idAr[0];
+
+      $sql = "UPDATE slot_order SET tires_id = $tires_id where slot_id = $slot_id";
+      $slot_id = executeInsert($db, $sql);
+    }
 
     $slot_id = 0;
 
     foreach ($cart as $services) {
       $sql = "INSERT INTO ordertable (orders_id, services_id) VALUES ($order_id, '$services->id')";
       executeInsert($db, $sql);
-
-      $category_id = $services->category_id;
-      if($category_id === 1){
-
-        $stmt = $db->prepare("SELECT slot_id FROM slot_order WHERE tires_id IS NULL");
-        $stmt->execute();
-        $slot_idAr = $stmt->fetch();
-
-        $slot_id = $slot_idAr[0];
-
-        $sql = "UPDATE slot_order SET tires_id = $tires_id where slot_id = $slot_id";
-        $slot_id = executeInsert($db, $sql);
-      }
     }
 
     $db->commit();

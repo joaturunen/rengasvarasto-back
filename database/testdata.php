@@ -57,7 +57,7 @@ insert into tires (car_id, brand, model, type, hubcups, groovefl, groovefr, groo
 (8, 'Hyvävuosi', 'etu:245/40R17, taka:335/35R17', 'kitka', true, 2.2, 2.2, 5, 3.2, 19, 'etu:5x15, taka 5x20', 'Marketeilla rallattu', 'Vector x 4', '02-12-2120 03:00:10', 'Mukava vaihtaa renkaita näin kolmelta aamuyöstä');
 
 
-insert into orders (customer_id, employee_id, tires_int) values
+insert into orders (customer_id, employee_id, tires_id) values
 (1, 3, 1),
 (2, 4, 2),
 (3, 3, 3),
