@@ -28,12 +28,15 @@ try {
   VALUES ('$firstname', '$lastname', '$phone', '$email', '$address', '$zipcode', '$city', '$employee_id')";
   $customer_id = executeInsert($db, $sql);
 
-  $sql = "INSERT INTO car (register, brand, model, customer_id)
-  VALUES ('$register','$brand', '$model', $customer_id)";
-  $car_id = executeInsert($db, $sql);
+  // $sql = "INSERT INTO car (register, brand, model, customer_id)
+  // VALUES ('$register','$brand', '$model', $customer_id)";
+  // $car_id = executeInsert($db, $sql);
 
-  $sql = "INSERT INTO tires (car_id) VALUES ($car_id)";
-  $tires_id = executeInsert($db, $sql);
+  // $sql = "INSERT INTO tires (car_id) VALUES ($car_id)";
+  // $tires_id = executeInsert($db, $sql);
+
+  $car_id = 0;
+  $tires_id = 0;
 
   header('HTTP/1.1 200 OK');
   $data = array('customer_id' => $customer_id, 
@@ -47,6 +50,7 @@ try {
   'car_id' => $car_id,
   'car_register' => $register,
   'tires_id' => $tires_id);
+
   echo json_encode($data);
 } catch (PDOException $pdoex) {
   $db->rollback();
