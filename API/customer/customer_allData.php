@@ -2,21 +2,16 @@
 require_once '../../inc/headers.php';
 require_once '../../inc/functions.php';
 
-// Get raw posted data
 $input = json_decode(file_get_contents('php://input'));
-
-
-$id = filter_var($input->cus_id, FILTER_SANITIZE_NUMBER_INT);
-
+$id = intval(filter_var($input->customer_id, FILTER_SANITIZE_NUMBER_INT));
 
 try {
   $db = openDb();
-  $show = $db->prepare("SELECT * FROM customer WHERE id = :id");
 
-  $show->bindValue(":id", $id, PDO::PARAM_INT);
+  $show = $db->prepare("SELECT * FROM customer where id = $id");
 
   $show->execute();
-  $data = $show->fetch(PDO::FETCH_ASSOC);
+  $data = $show->fetch();
 
   header('HTTP/1.1 200 OK');
 
