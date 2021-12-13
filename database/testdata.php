@@ -12,29 +12,37 @@ insert into employee (firstname, lastname, phone, email, address, zipcode, city,
 ('Henna', 'Hallari', '0405234567', 'henhall@rengashotelli.org', 'Hallarikatu 5', '00004', 'Hallarila', 'Hallari', 'salasana', 4),
 ('Harri', 'Hallimestari', '0406234567', 'harhall@rengashotelli.org', 'Hallarikatu 6', '00004', 'Hallarila', 'Hallaripallari', 'salasana', 4);
 
-insert into customer (firstname, lastname, phone, email, address, zipcode, city, customersaved, employee_id) values
-('Martsa', 'Järvis', '0411234567', 'martsa@koulu.org', 'Martsankoti 1', '10001', 'Martsala', '17-11-2021 12:00:00', 2),
-('Jontsa', 'Turus', '0412234567', 'jontsa@koulu.org', 'Jontsankämppä 2', '10002', 'Jontsala', '17-11-2021 12:10:10', 3),
-('Altsa', 'Luomala', '0413234567', 'altsa@koulu.org', 'Altsankukkula 3', '10003', 'Altsala', '17-11-2021 12:20:20', 2),
-('Katsa', 'Mäkis', '0414234567', 'katsa@koulu.org', 'Katsanmäki 4', '10004', 'Katsala', '17-11-2021 12:30:30', 4),
-('Hantsa', 'Hirviölä', '0415234567', 'hantsa@koulu.org', 'Hantsankolo 5', '10005', 'Hantsala', '17-11-2021 12:40:40', 4);
+insert into customer (firstname, lastname, phone, email, address, zipcode, city, employee_id) values
+('Martsa', 'Järvis', '0411234567', 'martsa@koulu.org', 'Martsankoti 1', '10001', 'Martsala', 2),
+('Jontsa', 'Turus', '0412234567', 'jontsa@koulu.org', 'Jontsankämppä 2', '10002', 'Jontsala', 3),
+('Altsa', 'Luomala', '0413234567', 'altsa@koulu.org', 'Altsankukkula 3', '10003', 'Altsala', 2),
+('Katsa', 'Mäkis', '0414234567', 'katsa@koulu.org', 'Katsanmäki 4', '10004', 'Katsala', 4),
+('Hantsa', 'Hirviölä', '0415234567', 'hantsa@koulu.org', 'Hantsankolo 5', '10005', 'Hantsala', 4);
 
-insert into orders (orderdate, customer_id, employee_id) values
-('17-11-2021 12:00:00', 1, 3),
-('17-11-2021 12:10:10', 2, 4),
-('17-11-2021 12:20:20', 3, 3),
-('17-11-2021 12:30:30', 4, 5),
-('17-11-2021 12:40:40', 5, 4),
-('30-11-2021 19:20:20', 3, 3),
-('01-12-2021 07:20:20', 3, 4),
-('02-12-2021 10:20:20', 3, 5);
+insert into orders (customer_id, employee_id) values
+(1, 3),
+(2, 4),
+(3, 3),
+(4, 5),
+(5, 4),
+(3, 3),
+(3, 4),
+(3, 5);
 
-insert into services (service, price) values
-('renkaanvaihto', 50),
-('kesäsäilytys', 40),
-('talvisäilytys', 55),
-('renkaanvaihto ja kesäsäilytys', 80),
-('renkaanvaihto ja talvisäilytys', 95);
+insert into category (name) values
+('kausisäilytys'),
+('palvelu');
+
+insert into services (service, price, category_id) values
+('renkaanvaihto', 49.99, 2),
+('renkaiden pesu', 10.50, 2),
+('renkaiden tasopainotus', 10.50, 2);
+
+insert into services (service, price, category_id, season) values
+('kesäsäilytys', 39.99, 1 , 'kesä'),
+('talvisäilytys', 55.00, 1, 'talvi'),
+('renkaanvaihto ja kesäsäilytys', 80.00, 1, 'kesä'),
+('renkaanvaihto ja talvisäilytys', 95.00, 1, 'talvi');
 
 insert into ordertable (orders_id, services_id) values
 (1, 4), (2, 2), (3, 5), (4, 1), (5, 3), (6, 3), (7, 4), (8, 4);

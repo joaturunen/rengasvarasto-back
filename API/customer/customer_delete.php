@@ -2,8 +2,6 @@
 require_once '../../inc/headers.php';
 require_once '../../inc/functions.php';
 
-$db = null;
-
 // Get raw posted data
 $input = json_decode(file_get_contents('php://input'));
 $id = filter_var($input->id, FILTER_SANITIZE_NUMBER_INT);

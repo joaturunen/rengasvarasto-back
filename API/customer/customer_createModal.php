@@ -2,8 +2,6 @@
 require_once '../../inc/headers.php';
 require_once '../../inc/functions.php';
 
-$db = null;
-
 // Get raw posted data
 $input = json_decode(file_get_contents("php://input"));
 
@@ -32,9 +30,20 @@ try {
   $customer_id = executeInsert($db, $sql);
 
   $car_id = addCarForCustomer($customer_id, $register, $brand, $model);
+  $tires_id = addTires($car_id);
   
   header('HTTP/1.1 200 OK');
-  $data = array('customer_id' => $customer_id, 'firstname' => $firstname,'lastname' => $lastname,'car_id' => $car_id, 'car_register' => $register);
+  $data = array('customer_id' => $customer_id, 
+  'firstname' => $firstname,
+  'lastname' => $lastname,
+  'address' => $address,
+  'zipcode' => $zipcode,
+  'city' => $city,
+  'phone' => $phone,
+  'email' => $email,
+  'car_id' => $car_id,
+  'car_register' => $register,
+  'tires_id' => $tires_id);
   echo json_encode($data);
 } catch (PDOException $pdoex) {
 

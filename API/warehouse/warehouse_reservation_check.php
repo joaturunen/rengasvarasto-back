@@ -2,8 +2,6 @@
 require_once '../../inc/headers.php';
 require_once '../../inc/functions.php';
 
-$db = null;
-
 try {
   $db = openDb();
   $show = $db->prepare("SELECT * FROM slot_order WHERE tires_id IS NULL");

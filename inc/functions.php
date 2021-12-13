@@ -319,3 +319,17 @@ function addCarForCustomer($customer_id, $register, $brand, $model){
     }
   }
 }
+
+function addTires($car_id){
+  $db = null;
+  try {
+    $db = openDb();
+    $sql = "INSERT INTO tires (car_id) VALUES ($car_id)";
+
+    $tires_id = executeInsert($db, $sql);
+
+    return $tires_id;
+  } catch (PDOException $pdoex) {
+    returnError($pdoex);
+  }
+}
