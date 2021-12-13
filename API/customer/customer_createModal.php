@@ -21,17 +21,20 @@ $model = filter_var($input->model, FILTER_SANITIZE_STRING);
 try {
   //instantiate DB & connect
   $db = openDb();
+  $db->beginTransaction();
 
   // Create query
   $sql = "INSERT INTO customer (firstname, lastname, phone, email, address, zipcode, city, employee_id)
   VALUES ('$firstname', '$lastname', '$phone', '$email', '$address', '$zipcode', '$city', '$employee_id')";
-
-
   $customer_id = executeInsert($db, $sql);
 
-  $car_id = addCarForCustomer($customer_id, $register, $brand, $model);
-  $tires_id = addTires($car_id);
-  
+  $sql = "INSERT INTO car (register, brand, model, customer_id)
+  VALUES ('$register','$brand', '$model', $customer_id)";
+  $car_id = executeInsert($db, $sql);
+
+  $sql = "INSERT INTO tires (car_id) VALUES ($car_id)";
+  $tires_id = executeInsert($db, $sql);
+
   header('HTTP/1.1 200 OK');
   $data = array('customer_id' => $customer_id, 
   'firstname' => $firstname,
@@ -46,6 +49,6 @@ try {
   'tires_id' => $tires_id);
   echo json_encode($data);
 } catch (PDOException $pdoex) {
-
+  $db->rollback();
   returnError($pdoex);
 }
