@@ -28,11 +28,28 @@ try {
   $db = openDb();
 
   // Create query
-  $sql = "INSERT INTO tires 
-    (car_id, brand, model, type, hubcups, groovefl, groovefr, 
-      groovebl, groovebr, tiresize, tirebolt, text, rims, info)
-    VALUES ('$car_id', '$brand', '$model', '$type', '$hubcups', '$groovefl', '$groovefr', 
-      '$groovebl', '$groovebr', '$tiresize', '$tirebolt', '$text', '$rims', '$info'')";
+  $sql = "UPDATE tires 
+    SET brand = '$brand', 
+        model = '$model',
+        type = '$type',
+        hubcups = '$hubcups',
+        groovefl = '$groovefl',
+        groovefr = '$groovefr',
+        groovebl = '$groovebl',
+        groovebr = '$groovebr',
+        tiresize = '$tiresize',
+        tirebolt = '$tirebolt',
+        text = '$text',
+        rims = '$rims',
+        info = '$info'
+    WHERE tires_id = '$tires_id'";
+
+
+
+    // $sql = "INSERT INTO tires (car_id, brand, model, type, hubcups, groovefl, groovefr, 
+    //   groovebl, groovebr, tiresize, tirebolt, text, rims, info)
+    // VALUES ('$car_id', '$brand', '$model', '$type', '$hubcups', '$groovefl', '$groovefr', 
+    //   '$groovebl', '$groovebr', '$tiresize', '$tirebolt', '$text', '$rims', '$info'')";
 
   $tires_id = executeInsert($db, $sql);
   header('HTTP/1.1 200 OK');
