@@ -69,14 +69,23 @@ create index orders_index on orders (
 customer_id, employee_id
 );
 
-create table services (
-id smallserial primary key,
-service varchar(50),
-price int
+create table category (
+  id smallserial primary key,
+  name varchar(50)
 );
 
+create table services (
+id smallserial primary key,
+service varchar(50) not null,
+price decimal(5,2),
+category_id int not null,
+season varchar(20),
+foreign key (category_id) references category(id)
+);
+
+
 create table ordertable (
-  id smallserial primary key,
+id smallserial primary key,
 orders_id int not null, 
 services_id int not null,
 foreign key (orders_id) references orders(id),

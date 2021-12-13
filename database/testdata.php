@@ -29,12 +29,20 @@ insert into orders (customer_id, employee_id) values
 (3, 4),
 (3, 5);
 
-insert into services (service, price) values
-('renkaanvaihto', 50),
-('kesäsäilytys', 40),
-('talvisäilytys', 55),
-('renkaanvaihto ja kesäsäilytys', 80),
-('renkaanvaihto ja talvisäilytys', 95);
+insert into category (name) values
+('kausisäilytys'),
+('palvelu');
+
+insert into services (service, price, category_id) values
+('renkaanvaihto', 49.99, 2),
+('renkaiden pesu', 10.50, 2),
+('renkaiden tasopainotus', 10.50, 2);
+
+insert into services (service, price, category_id, season) values
+('kesäsäilytys', 39.99, 1 , 'kesä'),
+('talvisäilytys', 55.00, 1, 'talvi'),
+('renkaanvaihto ja kesäsäilytys', 80.00, 1, 'kesä'),
+('renkaanvaihto ja talvisäilytys', 95.00, 1, 'talvi');
 
 insert into ordertable (orders_id, services_id) values
 (1, 4), (2, 2), (3, 5), (4, 1), (5, 3), (6, 3), (7, 4), (8, 4);
