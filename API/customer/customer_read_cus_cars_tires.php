@@ -9,7 +9,6 @@ $id = intval(filter_var($input->cus_id, FILTER_SANITIZE_NUMBER_INT));
 
 try {
 
-  //$id = 1;
 
   $customer = getCustomer($id);
 

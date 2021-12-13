@@ -2,9 +2,10 @@
 require_once '../../inc/headers.php';
 require_once '../../inc/functions.php';
 
-//$db = null;
+
 
 $input = json_decode(file_get_contents('php://input'));
+
 $searchCriteria = filter_var($input->searchCriteria, FILTER_SANITIZE_STRING);
 
 try {

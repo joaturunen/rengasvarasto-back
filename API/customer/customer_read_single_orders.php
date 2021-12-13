@@ -2,8 +2,6 @@
 require_once '../../inc/headers.php';
 require_once '../../inc/functions.php';
 
-$db = null;
-
 $id = isset($_GET['id']) ? $_GET['id'] : die();
 
 try {
