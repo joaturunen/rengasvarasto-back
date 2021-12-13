@@ -58,6 +58,7 @@ employee_id
 create table orders (
 id smallserial primary key,
 orderdate date default current_timestamp,
+info text,
 customer_id int not null,
 employee_id int not null,
 foreign key (customer_id) references customer(id),
