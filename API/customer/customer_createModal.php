@@ -38,6 +38,7 @@ try {
   $car_id = 0;
   $tires_id = 0;
 
+  $db->commit();
   header('HTTP/1.1 200 OK');
   $data = array('customer_id' => $customer_id, 
   'firstname' => $firstname,
