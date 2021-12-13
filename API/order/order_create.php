@@ -37,7 +37,7 @@ try {
       }
     }
 
-     $db->commit();
+    $db->commit();
 
     header('HTTP/1.1 200 OK');
     $data = array('id' => $cus_id,

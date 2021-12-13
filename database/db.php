@@ -55,48 +55,7 @@ create index employee_index on customer (
 employee_id
 );
 
-create table orders (
-id smallserial primary key,
-orderdate date default current_timestamp,
-info text,
-customer_id int not null,
-employee_id int not null,
-foreign key (customer_id) references customer(id),
-foreign key (employee_id) references employee(id)
-on delete restrict
-);
 
-create index orders_index on orders (
-customer_id, employee_id
-);
-
-create table category (
-  id smallserial primary key,
-  name varchar(50)
-);
-
-create table services (
-id smallserial primary key,
-service varchar(50) not null,
-price decimal(5,2),
-category_id int not null,
-season varchar(20),
-foreign key (category_id) references category(id)
-);
-
-
-create table ordertable (
-id smallserial primary key,
-orders_id int not null, 
-services_id int not null,
-foreign key (orders_id) references orders(id),
-foreign key (services_id) references services(id)
-on delete restrict
-);
-
-create index ordertable_index on ordertable (
-orders_id, services_id 
-);
 
 create table car (
 id smallserial primary key,
@@ -186,4 +145,50 @@ slot_id int not null,
 tires_id int,
 foreign key (tires_id) references tires(id) on delete restrict,
 foreign key (slot_id) references slot(id)
+);
+
+create table orders (
+id smallserial primary key,
+orderdate date default current_timestamp,
+tires_int int,
+info text,
+customer_id int not null,
+employee_id int not null,
+foreign key (customer_id) references customer(id),
+foreign key (employee_id) references employee(id)
+on delete restrict,
+foreign key (tires_int) references tires(id)
+on delete restrict
+);
+
+create index orders_index on orders (
+customer_id, employee_id
+);
+
+create table category (
+  id smallserial primary key,
+  name varchar(50)
+);
+
+create table services (
+id smallserial primary key,
+service varchar(50) not null,
+price decimal(5,2),
+category_id int not null,
+season varchar(20),
+foreign key (category_id) references category(id)
+);
+
+
+create table ordertable (
+id smallserial primary key,
+orders_id int not null, 
+services_id int not null,
+foreign key (orders_id) references orders(id),
+foreign key (services_id) references services(id)
+on delete restrict
+);
+
+create index ordertable_index on ordertable (
+orders_id, services_id 
 );
