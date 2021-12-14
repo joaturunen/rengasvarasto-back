@@ -37,7 +37,6 @@ try {
 
   $db->commit();
 
-  $db->commit();
   header('HTTP/1.1 200 OK');
   $data = array('customer_id' => $customer_id, 
   'firstname' => $firstname,

@@ -131,7 +131,7 @@ groovebl varchar(25),
 groovebr varchar(25),
 text text,
 rims varchar(25),
-servicedate timestamp default current_timestamp,
+servicedate date default current_timestamp,
 info text,
 foreign key (car_id) references car(id)
 );

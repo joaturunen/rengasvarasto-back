@@ -5,7 +5,7 @@ require_once '../../inc/functions.php';
 // Get raw posted data
 $input = json_decode(file_get_contents('php://input'));
 
-$car_id = filter_var($input->car_id, FILTER_SANITIZE_NUMBER_INT);
+$car_id = intval(filter_var($input->car_id, FILTER_SANITIZE_NUMBER_INT));
 
 try {
     $db = openDb();
