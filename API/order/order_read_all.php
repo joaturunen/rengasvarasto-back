@@ -5,14 +5,13 @@ require_once '../../inc/functions.php';
 try {
   $db = openDb();
   $sql = "SELECT
+  orders.id,
   customer.id as customer_id,
   customer.firstname as customer_firstname,
   customer.lastname as customer_lastname,
-  orders.id,
   orders.orderdate
-  FROM customer, orders, ordertable
-  WHERE customer.id = orders.customer_id
-  AND orders.id = ordertable.orders_id";
+  FROM customer, orders
+  WHERE customer.id = orders.customer_id";
 
   $show = $db->query($sql);
 
