@@ -16,9 +16,8 @@ $groovebl = filter_var($input->groovebl, FILTER_SANITIZE_STRING);
 $groovebr = filter_var($input->groovebr, FILTER_SANITIZE_STRING);
 $tiresize = filter_var($input->tiresize, FILTER_SANITIZE_STRING);
 $tirebolt = filter_var($input->tirebolt, FILTER_SANITIZE_STRING);
-$text = filter_var($input->type, FILTER_SANITIZE_STRING);
+$text = filter_var($input->text, FILTER_SANITIZE_STRING);
 $rims = filter_var($input->rims, FILTER_SANITIZE_STRING);
-$info = filter_var($input->info, FILTER_SANITIZE_STRING);
 
 $hubcups = true;
 
@@ -28,35 +27,28 @@ try {
   $db = openDb();
 
   // Create query
-  $sql = "UPDATE tires 
-    SET brand = '$brand', 
-        model = '$model',
-        type = '$type',
-        hubcups = '$hubcups',
-        groovefl = '$groovefl',
-        groovefr = '$groovefr',
-        groovebl = '$groovebl',
-        groovebr = '$groovebr',
-        tiresize = '$tiresize',
-        tirebolt = '$tirebolt',
-        text = '$text',
-        rims = '$rims',
-        info = '$info'
-    WHERE tires_id = '$tires_id'";
-
-
-
-    // $sql = "INSERT INTO tires (car_id, brand, model, type, hubcups, groovefl, groovefr, 
-    //   groovebl, groovebr, tiresize, tirebolt, text, rims, info)
-    // VALUES ('$car_id', '$brand', '$model', '$type', '$hubcups', '$groovefl', '$groovefr', 
-    //   '$groovebl', '$groovebr', '$tiresize', '$tirebolt', '$text', '$rims', '$info'')";
+  
+    $sql = "INSERT INTO tires (car_id, brand, model, type, hubcups, groovefl, groovefr, 
+      groovebl, groovebr, tiresize, tirebolt, text, rims)
+    VALUES ('$car_id', '$brand', '$model', '$type', '$hubcups', '$groovefl', '$groovefr', 
+      '$groovebl', '$groovebr', '$tiresize', '$tirebolt', '$text', '$rims')";
 
   $tires_id = executeInsert($db, $sql);
   header('HTTP/1.1 200 OK');
-  $data = array('id' => $tires_id, 'car_id' => $car_id, 'brand' => $brand, 
-    'model' => $model, 'type' => $type, 'hubcups' => $hubcups, 'groovefl' => $groovefl, 
-    'groovefr' => $groovefr, 'groovebl' => $groovebl, 'groovebr' => $groovebr, 'tiresize' => $tiresize, 
-    'tirebolt' => $tirebolt, 'text' => $text, '' => $rims, '' => $info);
+  $data = array('id' => $tires_id, 
+    'car_id' => $car_id, 
+    'brand' => $brand, 
+    'model' => $model, 
+    'type' => $type, 
+    'hubcups' => $hubcups, 
+    'groovefl' => $groovefl, 
+    'groovefr' => $groovefr, 
+    'groovebl' => $groovebl, 
+    'groovebr' => $groovebr, 
+    'tiresize' => $tiresize, 
+    'tirebolt' => $tirebolt, 
+    'text' => $text, 
+    'rims' => $rims);
 
   echo json_encode($data);
 } catch (PDOException $pdoex) {

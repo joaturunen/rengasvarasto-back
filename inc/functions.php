@@ -37,7 +37,7 @@ function returnError(PDOException $pdoex): void
 
 function getCars($id)
 {
-  $db = null;
+  //$db = null;
 
   try {
     $db = openDb();
@@ -57,7 +57,7 @@ function getCars($id)
 
 function getCustomer($id)
 {
-  $db = null;
+  //$db = null;
 
   try {
     $db = openDb();
@@ -78,7 +78,7 @@ function getCustomer($id)
 
 function getTires($id)
 {
-  $db = null;
+  //$db = null;
 
   try {
     $db = openDb();
@@ -140,7 +140,7 @@ function getTires($id)
 
 function getShelf_amount($id)
 {
-  $db = null;
+  //$db = null;
 
   try {
     $db = openDb();
@@ -160,7 +160,7 @@ function getShelf_amount($id)
 
 function getShelfs()
 {
-  $db = null;
+  //$db = null;
 
   try {
 
@@ -179,7 +179,7 @@ function getShelfs()
 
 function getShelfSlots($id)
 {
-  $db = null;
+  //$db = null;
 
   try {
 
@@ -199,7 +199,7 @@ function getShelfSlots($id)
 
 function getSlot($id)
 {
-  $db = null;
+  //$db = null;
 
   try {
 
@@ -219,7 +219,7 @@ function getSlot($id)
 
 function getCalculateSlots($id)
 {
-  $db = null;
+  //$db = null;
   try {
 
     $db = openDb();
@@ -238,7 +238,7 @@ function getCalculateSlots($id)
 
 function getCalculateSlotsNull($id)
 {
-  $db = null;
+  //$db = null;
   try {
 
     $db = openDb();
@@ -265,7 +265,7 @@ function getCalculateSlotsNull($id)
 
 function getCalculateAllSlotsNull()
 {
-  $db = null;
+  //$db = null;
   try {
     $db = openDb();
     $show = $db->prepare("SELECT
@@ -285,7 +285,7 @@ function getCalculateAllSlotsNull()
 
 function getCalculateAllSlotsNotNull()
 {
-  $db = null;
+  //$db = null;
   try {
     $db = openDb();
     $show = $db->prepare("SELECT
@@ -305,7 +305,7 @@ function getCalculateAllSlotsNotNull()
 
 function addCarForCustomer($customer_id, $register, $brand, $model){
   {
-    $db = null;
+    //$db = null;
     try {
       $db = openDb();
       $sql = "INSERT INTO car (register, brand, model, customer_id)
@@ -321,7 +321,7 @@ function addCarForCustomer($customer_id, $register, $brand, $model){
 }
 
 function addTires($car_id){
-  $db = null;
+  //$db = null;
   try {
     $db = openDb();
     $sql = "INSERT INTO tires (car_id) VALUES ($car_id)";

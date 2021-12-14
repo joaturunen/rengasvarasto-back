@@ -24,16 +24,16 @@ try {
 
   $data['cars'] = $cars_array;
 
-  $tires_array = [];
-  foreach ($cars_id as $car_id) {
-    $tires = getTires($car_id);
-    $tires_id = [];
-    foreach ($tires as $tire) {
-      array_push($tires_array, $tire);
-    };
-  };
+  // $tires_array = [];
+  // foreach ($cars_id as $car_id) {
+  //   $tires = getTires($car_id);
+  //   $tires_id = [];
+  //   foreach ($tires as $tire) {
+  //     array_push($tires_array, $tire);
+  //   };
+  // };
 
-  $data['tires'] = $tires_array;
+  // $data['tires'] = $tires_array;
 
   header('HTTP/1.1 200 OK');
 
