@@ -8,10 +8,12 @@ $id = intval(filter_var($input->customer_id, FILTER_SANITIZE_NUMBER_INT));
 try {
   $db = openDb();
 
-  $show = $db->prepare("SELECT * FROM customer where id = $id");
+  $customer = $db->prepare("SELECT * FROM customer where id = $id");
 
-  $show->execute();
-  $data = $show->fetch();
+  $customer->execute();
+  $customer->fetch();
+
+  $data['customer'] = $customer;
 
   header('HTTP/1.1 200 OK');
 
