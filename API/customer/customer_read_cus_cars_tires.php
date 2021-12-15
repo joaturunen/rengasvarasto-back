@@ -34,6 +34,15 @@ try {
 
   $data['tires'] = $tires_array;
 
+  $orders_array = [];
+  $orders = getCusOrders($id);
+  $orders_id = [];
+  foreach ($orders as $order) {
+      array_push($orders_array, $order);
+  };
+
+  $data['orders'] = $orders_array;
+
   header('HTTP/1.1 200 OK');
 
   echo json_encode($data);

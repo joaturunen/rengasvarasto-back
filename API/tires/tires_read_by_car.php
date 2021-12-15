@@ -12,10 +12,10 @@ try {
 
     $tires_array = [];
     $tires = getTires($car_id);
-        $tires_id = [];
-        foreach ($tires as $tire) {
-            array_push($tires_array, $tire);
-        };
+    $tires_id = [];
+    foreach ($tires as $tire) {
+        array_push($tires_array, $tire);
+    };
     
     $data['tires'] = $tires_array;
 

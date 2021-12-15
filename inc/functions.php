@@ -340,3 +340,30 @@ function addTires($car_id){
     returnError($pdoex);
   }
 }
+
+function getCusOrders($customer_id) {
+  try {
+    $db = openDb();
+    $sql = "SELECT
+      orders.id,
+      car.register as car_register,
+      orders.orderdate
+      FROM customer, car, tires, orders
+      WHERE customer.id = orders.customer_id
+      AND customer.id = car.customer_id
+      AND car.id = tires.car_id
+      AND tires.id = orders.tires_id
+      AND customer.id = :customer_id";
+
+    $show = $db->prepare($sql);
+
+    $show->bindValue(":customer_id", $customer_id, PDO::PARAM_INT);
+
+    $show->execute();
+    $data = $show->fetchAll(PDO::FETCH_ASSOC);
+
+    return $data;
+  } catch (PDOException $pdoex) {
+  returnError($pdoex);
+  }
+}
