@@ -48,7 +48,9 @@ try {
   'email' => $email,
   'car_id' => $car_id,
   'car_register' => $register,
-  'tires_id' => $tires_id);
+  'tires_id' => $tires_id,
+  'slot_id' => 0,
+  'oldTires_id'=> 0);
 
   echo json_encode($data);
 } catch (PDOException $pdoex) {
