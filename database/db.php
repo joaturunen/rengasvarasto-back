@@ -147,14 +147,22 @@ foreign key (tires_id) references tires(id) on delete restrict,
 foreign key (slot_id) references slot(id)
 );
 
+
+create table season (
+  id smallserial primary key,
+  name varchar(20)
+);
+
 create table orders (
 id smallserial primary key,
 orderdate date default current_timestamp,
 tires_id int,
 info text,
+season_id int,
 customer_id int not null,
 employee_id int not null,
 foreign key (customer_id) references customer(id),
+foreign key (season_id) references season(id),
 foreign key (employee_id) references employee(id)
 on delete restrict,
 foreign key (tires_id) references tires(id)
@@ -175,7 +183,8 @@ id smallserial primary key,
 service varchar(50) not null,
 price decimal(5,2),
 category_id int not null,
-season varchar(20),
+season_id int,
+foreign key (season_id) references season(id),
 foreign key (category_id) references category(id)
 );
 

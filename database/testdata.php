@@ -24,16 +24,20 @@ insert into category (name) values
 ('kausisäilytys'),
 ('palvelu');
 
+insert into season (name) values
+('kesä'),
+('talvi');
+
 insert into services (service, price, category_id) values
 ('renkaanvaihto', 49.99, 2),
 ('renkaiden pesu', 10.50, 2),
 ('renkaiden tasopainotus', 10.50, 2);
 
-insert into services (service, price, category_id, season) values
-('kesäsäilytys', 39.99, 1 , 'kesä'),
-('talvisäilytys', 55.00, 1, 'talvi'),
-('renkaanvaihto ja kesäsäilytys', 80.00, 1, 'kesä'),
-('renkaanvaihto ja talvisäilytys', 95.00, 1, 'talvi');
+insert into services (service, price, category_id, season_id) values
+('kesäsäilytys', 39.99, 1, 1),
+('talvisäilytys', 55.00, 1, 2),
+('renkaanvaihto ja kesäsäilytys', 80.00, 1, 1),
+('renkaanvaihto ja talvisäilytys', 95.00, 1, 2);
 
 
 insert into car (register, brand, model, customer_id) values
@@ -61,15 +65,15 @@ insert into tires (car_id, brand, model, type, hubcups, groovefl, groovefr, groo
 (9,'Firestone', 'etu:215/45ZR17, taka:245/40ZR17', 'talvi', true, 4, 4, 4, 4, 17, 'etu:5x15, taka 5x20', 'Renkaat hyvässä kunnossa', 'Maserati x 4', '');
 
 
-insert into orders (customer_id, employee_id, tires_id) values
-(1, 3, 1),
-(2, 4, 2),
-(3, 3, 3),
-(4, 5, 4),
-(5, 4, 5),
-(3, 3, 6),
-(3, 4, 7),
-(3, 5, 8);
+insert into orders (customer_id, employee_id, tires_id, season_id) values
+(1, 3, 1, 1),
+(2, 4, 2, 2),
+(3, 3, 3, 2),
+(4, 5, 4, 2),
+(5, 4, 5, 1),
+(3, 3, 6, 2),
+(3, 4, 7, 1),
+(3, 5, 8, 1);
 
 insert into ordertable (orders_id, services_id) values
 (1, 4), (2, 5), (3, 5), (4, 5), (5, 6), (6, 7), (7, 4), (8, 4);
