@@ -113,7 +113,7 @@ function getTires($id)
     slot.id as slot_id,
     shelf.id as shelf_id,
     warehouse.id as warehouse_id,
-    services.season as order_season
+    season.name as order_season
     FROM car
     LEFT JOIN tires
     ON tires.car_id = car.id
@@ -127,10 +127,8 @@ function getTires($id)
     ON warehouse.id = shelf.warehouse_id
     LEFT JOIN orders
     ON orders.tires_id = tires.id
-    LEFT JOIN ordertable
-    ON ordertable.orders_id = orders.id
-    LEFT JOIN services
-    ON services.id = ordertable.services_id
+    LEFT JOIN season
+    ON season.id = orders.season_id
     WHERE car.id = :id");
 
     $show->bindValue(":id", $id, PDO::PARAM_INT);

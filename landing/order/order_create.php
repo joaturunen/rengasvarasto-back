@@ -25,13 +25,13 @@ try {
       $message .= "Tilaus ilman rengaspaikkaa.";
     } else if($oldTires_id !== 0){
 
-      $message .= "Vanhat renkaat(NRO-$oldTires_id) poistetaan varastosta paikalta NRO $slot_id. Paikalle lisätään renkaat NRO-$tires_id";
-      $sql = "INSERT INTO orders (customer_id, employee_id) VALUES ($cus_id, $employee_id)";
-      $order_id = executeInsert($db, $sql);
+      // $message .= "Vanhat renkaat(NRO-$oldTires_id) poistetaan varastosta paikalta NRO $slot_id. Paikalle lisätään renkaat NRO-$tires_id";
+      // $sql = "INSERT INTO orders (customer_id, employee_id) VALUES ($cus_id, $employee_id)";
+      // $order_id = executeInsert($db, $sql);
 
-      $sql = "UPDATE slot_order SET tires_id = $tires_id WHERE slot_id = $slot_id";
+      // $sql = "UPDATE slot_order SET tires_id = $tires_id WHERE slot_id = $slot_id";
 
-      $order_id = executeInsert($db, $sql);
+      // $order_id = executeInsert($db, $sql);
       $message .= "NRO-$oldTires_id vaihdetaan autoon. ";
     } else {
       $message .= "Lisätään varastoon renkaat NRO-$tires_id paikalle $slot_id. ";
@@ -51,6 +51,10 @@ try {
     foreach ($cart as $services) {
       $sql = "INSERT INTO ordertable (orders_id, services_id) VALUES ($order_id, '$services->id')";
       executeInsert($db, $sql);
+      $season = $services->season_id;
+      if($season !== null){
+        $sql = "UPDATE orders SET tires_id = $tires_id WHERE slot_id = $slot_id";
+      }
     }
 
     $db->commit();
