@@ -5,7 +5,7 @@ require_once '../../inc/functions.php';
 // Get raw posted data
 $input = json_decode(file_get_contents('php://input'));
 
-$car_id = filter_var($input->car_id, FILTER_SANITIZE_NUMBER_INT);
+$car_id = intval(filter_var($input->car_id, FILTER_SANITIZE_NUMBER_INT));
 $brand = filter_var($input->brand, FILTER_SANITIZE_STRING);
 $model = filter_var($input->model, FILTER_SANITIZE_STRING);
 $type = filter_var($input->type, FILTER_SANITIZE_STRING);
@@ -27,13 +27,37 @@ try {
   $db = openDb();
 
   // Create query
-  
-    $sql = "INSERT INTO tires (car_id, brand, model, type, hubcups, groovefl, groovefr, 
-      groovebl, groovebr, tiresize, tirebolt, text, rims)
-    VALUES ('$car_id', '$brand', '$model', '$type', '$hubcups', '$groovefl', '$groovefr', 
-      '$groovebl', '$groovebr', '$tiresize', '$tirebolt', '$text', '$rims')";
+  $sql = "INSERT INTO tires 
+      (car_id, 
+      brand, 
+      model, 
+      type, 
+      hubcups, 
+      groovefl, 
+      groovefr,
+      groovebl, 
+      groovebr, 
+      tiresize, 
+      tirebolt, 
+      text, 
+      rims)
+    VALUES 
+      ('$car_id', 
+      '$brand', 
+      '$model', 
+      '$type', 
+      '$hubcups', 
+      '$groovefl', 
+      '$groovefr', 
+      '$groovebl', 
+      '$groovebr', 
+      '$tiresize', 
+      '$tirebolt', 
+      '$text', 
+      '$rims')";
 
   $tires_id = executeInsert($db, $sql);
+
   header('HTTP/1.1 200 OK');
   $data = array('id' => $tires_id, 
     'car_id' => $car_id, 
