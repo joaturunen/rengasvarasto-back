@@ -43,8 +43,6 @@ try {
             rims = :rims
         WHERE id = :id";
 
-    // $id = executeInsert($db, $sql); ei toimi update
-
     $update = $db->prepare($sql);
 
     $update->bindValue(":id", $id, PDO::PARAM_INT);

@@ -4,16 +4,16 @@ session_start();
 require_once '../../inc/headers.php';
 require_once '../../inc/functions.php';
 
-include_once '../../config/Database.php';
-include_once '../../models/Customer.php';
+// include_once '../../config/Database.php';
+// include_once '../../models/Customer.php';
 
 // Get raw posted data
-$username = filter_input(INPUT_POST, 'login', FILTER_SANITIZE_STRING);
+$login = filter_input(INPUT_POST, 'login', FILTER_SANITIZE_STRING);
 $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
 
 
 //SQL for user
-$sql = "select * from employee where username = '$login'";
+$sql = "SELECT * FROM employee WHERE login = '$login'";
 
 try {
   $db = openDb();
@@ -32,7 +32,7 @@ try {
       //Password is ok
       header('HTTP/1.1 200 OK');
       $data = array(
-        'username' => $user->login,
+        'login' => $user->login,
         'password' => $user->password,
         'firstname' => $user->firstname,
         'lastname' => $uset->lastname
