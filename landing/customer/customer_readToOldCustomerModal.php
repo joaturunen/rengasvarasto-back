@@ -31,6 +31,7 @@ try {
     };
   };
 
+  $data['tires'] = $tires_array;
 
   header('HTTP/1.1 200 OK');
 

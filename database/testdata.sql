@@ -78,8 +78,8 @@ insert into orders (customer_id, employee_id, tires_id, season_id) values
 insert into ordertable (orders_id, services_id) values
 (1, 4), (2, 5), (3, 5), (4, 5), (5, 6), (6, 7), (7, 4), (8, 4);
 
-UPDATE slot_order SET tires_id = 1 WHERE slot_id = 13;
-UPDATE slot_order SET tires_id = 2 WHERE slot_id = 14; 
-UPDATE slot_order SET tires_id = 3 WHERE slot_id = 3; 
-UPDATE slot_order SET tires_id = 4 WHERE slot_id = 200; 
-UPDATE slot_order SET tires_id = 5 WHERE slot_id = 150; 
+UPDATE slot_order SET order_id = 1 WHERE slot_id = 13;
+UPDATE slot_order SET order_id = 2 WHERE slot_id = 14; 
+UPDATE slot_order SET order_id = 3 WHERE slot_id = 3; 
+UPDATE slot_order SET order_id = 4 WHERE slot_id = 200; 
+UPDATE slot_order SET order_id = 5 WHERE slot_id = 150; 

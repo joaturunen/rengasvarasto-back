@@ -140,14 +140,6 @@ create index tires_index on tires (
 car_id
 );
 
-create table slot_order (
-slot_id int not null,
-tires_id int,
-foreign key (tires_id) references tires(id) on delete restrict,
-foreign key (slot_id) references slot(id)
-);
-
-
 create table season (
   id smallserial primary key,
   name varchar(20)
@@ -200,4 +192,11 @@ on delete restrict
 
 create index ordertable_index on ordertable (
 orders_id, services_id 
+);
+
+create table slot_order (
+slot_id int not null,
+order_id int,
+foreign key (order_id) references orders(id) on delete restrict,
+foreign key (slot_id) references slot(id)
 );

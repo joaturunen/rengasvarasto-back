@@ -373,7 +373,7 @@ function getTiresOldModal($id)
 
     $show = $db->prepare("SELECT
     tires.id, 
-    tires.car_id, 
+    tires.car_id as car_id, 
     car.register as car_register,
     tires.brand,
     tires.type,
@@ -388,7 +388,8 @@ function getTiresOldModal($id)
     ON orders.tires_id = tires.id
     LEFT JOIN season
     ON season.id = orders.season_id
-    WHERE car.id = :id");
+    WHERE car.id = :id AND slot_order.tires_id IS NULL OR (tires.id = slot_order.tires_id)
+    ORDER BY tires.id");
 
     $show->bindValue(":id", $id, PDO::PARAM_INT);
 

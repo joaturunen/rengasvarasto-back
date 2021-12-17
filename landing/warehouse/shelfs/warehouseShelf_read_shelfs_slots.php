@@ -13,9 +13,9 @@ try {
   $db = openDb();
 
   $show = $db->prepare("SELECT
+    DISTINCT ON (slot.id) slot_id,
     warehouse.id as warehouse_id,
     shelf.id as shelf_id,
-    slot.id as slot_id,
     tires.id as tires_id,
     tires.brand as tires_brand,
     tires.type as tires_type,
@@ -34,8 +34,8 @@ try {
     ON orders.tires_id = tires.id
     LEFT JOIN season
     ON season.id = orders.season_id
-    WHERE shelf.id = :id
-    ORDER BY slot_id");
+    WHERE shelf.id = :id AND slot_order.tires_id IS NULL OR (tires.id = slot_order.tires_id)
+    ORDER BY slot.id");
 
   // $show = $db->query("SELECT * FROM shelf WHERE id = $id");
 
