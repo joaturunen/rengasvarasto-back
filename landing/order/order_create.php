@@ -47,6 +47,7 @@ try {
 
       $sql = "UPDATE slot_order SET tires_id = $tires_id where slot_id = $new_slot_id";
       $new_slot_id = executeInsert($db, $sql);
+      $message .= "Lisätään varastoon renkaat NRO-$tires_id paikalle $new_slot_id. ";
     } else {
       $message .= "Tilaus ilman rengaspaikkaa.";
     }
@@ -67,7 +68,7 @@ try {
     $db->commit();
 
     header('HTTP/1.1 200 OK');
-    $data = array('status' => "Tilaus onnistui.");
+    $data = array('status' => "Tilaus onnistui.", 'orderNRO' =>  $order_id);
     echo json_encode($data);
 }
 catch (PDOException $pdoex) {

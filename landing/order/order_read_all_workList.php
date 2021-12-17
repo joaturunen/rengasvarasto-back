@@ -6,10 +6,9 @@ try {
   $db = openDb();
   $sql = "SELECT
     orders.id,
-    customer.firstname as customer_firstname,
-    customer.lastname as customer_lastname,
     car.register as car_register,
-    orders.orderdate
+    orders.orderdate,
+    orders.info
     FROM customer, car, tires, orders
     WHERE customer.id = orders.customer_id
     AND customer.id = car.customer_id
