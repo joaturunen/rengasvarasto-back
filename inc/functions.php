@@ -365,3 +365,38 @@ function getCusOrders($customer_id) {
   returnError($pdoex);
   }
 }
+
+function getTiresOldModal($id)
+{
+  try {
+    $db = openDb();
+
+    $show = $db->prepare("SELECT
+    tires.id, 
+    tires.car_id, 
+    car.register as car_register,
+    tires.brand,
+    tires.type,
+    slot_order.slot_id as slot_id,
+    season.name as order_season
+    FROM car
+    LEFT JOIN tires
+    ON tires.car_id = car.id
+    LEFT JOIN slot_order
+    ON slot_order.tires_id = tires.id
+    LEFT JOIN orders
+    ON orders.tires_id = tires.id
+    LEFT JOIN season
+    ON season.id = orders.season_id
+    WHERE car.id = :id");
+
+    $show->bindValue(":id", $id, PDO::PARAM_INT);
+
+    $show->execute();
+    $data = $show->fetchAll(PDO::FETCH_ASSOC);
+
+    return $data;
+  } catch (PDOException $pdoex) {
+    returnError($pdoex);
+  }
+}
