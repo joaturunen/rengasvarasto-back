@@ -348,14 +348,15 @@ function getTiresOldModal($id)
     FROM car
     LEFT JOIN tires
     ON tires.car_id = car.id
-    LEFT JOIN orders
-    ON orders.tires_id = tires.id
-    LEFT JOIN slot_order
-    ON slot_order.order_id = orders.id
+    LEFT JOIN orderline
+    ON orderline.tires_id = tires.id
+    LEFT JOIN services
+    ON services.id = orderline.services_id
     LEFT JOIN season
-    ON season.id = orders.season_id
-    WHERE car.id = :id
-    ORDER BY tires.id");
+    ON season.id = services.season_id
+    LEFT JOIN slot_order
+    ON slot_order.orderline_id = orderline.id
+    WHERE car.id = :id");
 
     $show->bindValue(":id", $id, PDO::PARAM_INT);
 
