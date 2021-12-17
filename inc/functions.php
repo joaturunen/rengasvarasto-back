@@ -113,7 +113,7 @@ function getTires($id)
     slot.id as slot_id,
     shelf.id as shelf_id,
     warehouse.id as warehouse_id,
-    services.season as order_season
+    season.name as order_season
     FROM car
     LEFT JOIN tires
     ON tires.car_id = car.id
@@ -127,10 +127,8 @@ function getTires($id)
     ON warehouse.id = shelf.warehouse_id
     LEFT JOIN orders
     ON orders.tires_id = tires.id
-    LEFT JOIN ordertable
-    ON ordertable.orders_id = orders.id
-    LEFT JOIN services
-    ON services.id = ordertable.services_id
+    LEFT JOIN season
+    ON season.id = orders.season_id
     WHERE car.id = :id");
 
     $show->bindValue(":id", $id, PDO::PARAM_INT);
@@ -365,5 +363,41 @@ function getCusOrders($customer_id) {
     return $data;
   } catch (PDOException $pdoex) {
   returnError($pdoex);
+  }
+}
+
+function getTiresOldModal($id)
+{
+  try {
+    $db = openDb();
+
+    $show = $db->prepare("SELECT
+    tires.id, 
+    tires.car_id as car_id, 
+    car.register as car_register,
+    tires.brand,
+    tires.type,
+    slot_order.slot_id as slot_id,
+    season.name as order_season
+    FROM car
+    LEFT JOIN tires
+    ON tires.car_id = car.id
+    LEFT JOIN slot_order
+    ON slot_order.tires_id = tires.id
+    LEFT JOIN orders
+    ON orders.tires_id = tires.id
+    LEFT JOIN season
+    ON season.id = orders.season_id
+    WHERE car.id = :id AND slot_order.tires_id IS NULL OR (tires.id = slot_order.tires_id)
+    ORDER BY tires.id");
+
+    $show->bindValue(":id", $id, PDO::PARAM_INT);
+
+    $show->execute();
+    $data = $show->fetchAll(PDO::FETCH_ASSOC);
+
+    return $data;
+  } catch (PDOException $pdoex) {
+    returnError($pdoex);
   }
 }

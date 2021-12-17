@@ -60,9 +60,9 @@ insert into tires (car_id, brand, model, type, hubcups, groovefl, groovefr, groo
 (6, 'Tulikivi', 'etu:245/40R17, taka:335/35R17', 'kesä', true, 6, 3.5, 6, 4, 17, 'etu:5x18, taka 5x20', 'Renkaat are noice!', 'Tesla x 4', 'Sähköpirssin renkaat ei toimi sähköllä'),
 (7, 'Siltakivi', 'etu:245/40R17, taka:335/35R17', 'talvi', true, 5, 3.3, 5, 3.2, 19, 'etu:5x15, taka 5x20', 'Renkaat toispuoleiset', 'Alfa Romeo x 4', 'Ei kannata mennä mutkiin ovi eellä'),
 (8, 'Hyvävuosi', 'etu:245/40R17, taka:335/35R17', 'kitka', true, 2.2, 2.2, 5, 3.2, 19, 'etu:5x15, taka 5x20', 'Marketeilla rallattu', 'Vector x 4', 'Mukava vaihtaa renkaita näin kolmelta aamuyöstä'),
-(1,'Firestone', 'etu:215/45ZR17, taka:245/40ZR17', 'talvi', true, 4, 4, 4, 4, 17, 'etu:5x15, taka 5x20', 'Renkaat hyvässä kunnossa', 'Maserati x 4', ''),
-(9,'Firestone', 'etu:215/45ZR17, taka:245/40ZR17', 'talvi', true, 4, 4, 4, 4, 17, 'etu:5x15, taka 5x20', 'Renkaat hyvässä kunnossa', 'Maserati x 4', ''),
-(9,'Firestone', 'etu:215/45ZR17, taka:245/40ZR17', 'talvi', true, 4, 4, 4, 4, 17, 'etu:5x15, taka 5x20', 'Renkaat hyvässä kunnossa', 'Maserati x 4', '');
+(1,'Jänis', 'etu:215/45ZR17, taka:245/40ZR17', 'talvi', true, 4, 4, 4, 4, 17, 'etu:5x15, taka 5x20', 'Renkaat hyvässä kunnossa', 'Maserati x 4', ''),
+(9,'koira', 'etu:215/45ZR17, taka:245/40ZR17', 'talvi', true, 4, 4, 4, 4, 17, 'etu:5x15, taka 5x20', 'Renkaat hyvässä kunnossa', 'Maserati x 4', ''),
+(9,'Kossa', 'etu:215/45ZR17, taka:245/40ZR17', 'talvi', true, 4, 4, 4, 4, 17, 'etu:5x15, taka 5x20', 'Renkaat hyvässä kunnossa', 'Maserati x 4', '');
 
 
 insert into orders (customer_id, employee_id, tires_id, season_id) values
@@ -78,8 +78,8 @@ insert into orders (customer_id, employee_id, tires_id, season_id) values
 insert into ordertable (orders_id, services_id) values
 (1, 4), (2, 5), (3, 5), (4, 5), (5, 6), (6, 7), (7, 4), (8, 4);
 
-UPDATE slot_order SET tires_id = 1 WHERE slot_id = 13;
-UPDATE slot_order SET tires_id = 2 WHERE slot_id = 14; 
-UPDATE slot_order SET tires_id = 3 WHERE slot_id = 3; 
-UPDATE slot_order SET tires_id = 4 WHERE slot_id = 200; 
-UPDATE slot_order SET tires_id = 5 WHERE slot_id = 150; 
+UPDATE slot_order SET order_id = 1 WHERE slot_id = 13;
+UPDATE slot_order SET order_id = 2 WHERE slot_id = 14; 
+UPDATE slot_order SET order_id = 3 WHERE slot_id = 3; 
+UPDATE slot_order SET order_id = 4 WHERE slot_id = 200; 
+UPDATE slot_order SET order_id = 5 WHERE slot_id = 150; 
