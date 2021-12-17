@@ -37,7 +37,6 @@ function returnError(PDOException $pdoex): void
 
 function getCars($id)
 {
-  //$db = null;
 
   try {
     $db = openDb();
@@ -57,7 +56,6 @@ function getCars($id)
 
 function getCustomer($id)
 {
-  //$db = null;
 
   try {
     $db = openDb();
@@ -78,19 +76,8 @@ function getCustomer($id)
 
 function getTires($id)
 {
-  //$db = null;
-
   try {
     $db = openDb();
-
-    // COUNT(s.slot_id)
-    // FROM slot_order s 
-    // LEFT JOIN slot 
-    // ON slot.id = s.slot_id 
-    // LEFT JOIN shelf 
-    // ON shelf.id = slot.shelf_id 
-    // WHERE shelf.id = :id AND s.tires_id IS NULL");
-
 
     $show = $db->prepare("SELECT
     tires.id, 
@@ -117,18 +104,20 @@ function getTires($id)
     FROM car
     LEFT JOIN tires
     ON tires.car_id = car.id
+    LEFT JOIN orderline
+    ON orderline.tires_id = tires.id
+    LEFT JOIN services
+    ON services.id = orderline.services_id
+    LEFT JOIN season
+    ON season.id = services.season_id
     LEFT JOIN slot_order
-    ON slot_order.tires_id = tires.id
+    ON slot_order.orderline_id = orderline.id
     LEFT JOIN slot
     ON slot.id = slot_order.slot_id
     LEFT JOIN shelf
     ON shelf.id = slot.shelf_id
     LEFT JOIN warehouse
     ON warehouse.id = shelf.warehouse_id
-    LEFT JOIN orders
-    ON orders.tires_id = tires.id
-    LEFT JOIN season
-    ON season.id = orders.season_id
     WHERE car.id = :id");
 
     $show->bindValue(":id", $id, PDO::PARAM_INT);
@@ -145,7 +134,6 @@ function getTires($id)
 
 function getShelf_amount($id)
 {
-  //$db = null;
 
   try {
     $db = openDb();
@@ -165,7 +153,6 @@ function getShelf_amount($id)
 
 function getShelfs()
 {
-  //$db = null;
 
   try {
 
@@ -184,7 +171,6 @@ function getShelfs()
 
 function getShelfSlots($id)
 {
-  //$db = null;
 
   try {
 
@@ -202,29 +188,10 @@ function getShelfSlots($id)
   }
 }
 
-function getSlot($id)
-{
-  //$db = null;
-
-  try {
-
-    $db = openDb();
-    $show = $db->prepare("SELECT COUNT(*) FROM slot_order WHERE slot_id = :id AND tires_id IS NOT NULL");
-
-    $show->bindValue(":id", $id, PDO::PARAM_INT);
-
-    $show->execute();
-    $data = $show->fetchAll(PDO::FETCH_ASSOC);
-
-    return $data;
-  } catch (PDOException $pdoex) {
-    returnError($pdoex);
-  }
-}
 
 function getCalculateSlots($id)
 {
-  //$db = null;
+
   try {
 
     $db = openDb();
@@ -243,7 +210,7 @@ function getCalculateSlots($id)
 
 function getCalculateSlotsNull($id)
 {
-  //$db = null;
+
   try {
 
     $db = openDb();
@@ -254,7 +221,7 @@ function getCalculateSlotsNull($id)
       ON slot.id = s.slot_id 
       LEFT JOIN shelf 
       ON shelf.id = slot.shelf_id 
-      WHERE shelf.id = :id AND s.order_id IS NULL");
+      WHERE shelf.id = :id AND s.orderline_id IS NULL");
 
     $show->bindValue(":id", $id, PDO::PARAM_INT);
 
@@ -270,13 +237,13 @@ function getCalculateSlotsNull($id)
 
 function getCalculateAllSlotsNull()
 {
-  //$db = null;
+
   try {
     $db = openDb();
     $show = $db->prepare("SELECT
       COUNT(slot_id)
       FROM slot_order 
-      WHERE order_id IS NULL");
+      WHERE orderline_id IS NULL");
 
     $show->execute();
     $data = $show->fetchAll(PDO::FETCH_ASSOC);
@@ -289,13 +256,13 @@ function getCalculateAllSlotsNull()
 
 function getCalculateAllSlotsNotNull()
 {
-  //$db = null;
+
   try {
     $db = openDb();
     $show = $db->prepare("SELECT
       COUNT(slot_id)
       FROM slot_order 
-      WHERE order_id IS NOT NULL");
+      WHERE orderline_id IS NOT NULL");
 
     $show->execute();
     $data = $show->fetchAll(PDO::FETCH_ASSOC);
@@ -309,7 +276,7 @@ function getCalculateAllSlotsNotNull()
 
 function addCarForCustomer($customer_id, $register, $brand, $model){
   {
-    //$db = null;
+
     try {
       $db = openDb();
       $sql = "INSERT INTO car (register, brand, model, customer_id)
@@ -325,7 +292,7 @@ function addCarForCustomer($customer_id, $register, $brand, $model){
 }
 
 function addTires($car_id){
-  //$db = null;
+
   try {
     $db = openDb();
     $sql = "INSERT INTO tires (car_id) VALUES ($car_id)";
@@ -345,12 +312,12 @@ function getCusOrders($customer_id) {
       orders.id,
       car.register as car_register,
       orders.orderdate
-      FROM customer, car, tires, orders
-      WHERE customer.id = orders.customer_id
-      AND customer.id = car.customer_id
-      AND car.id = tires.car_id
-      AND tires.id = orders.tires_id
-      AND customer.id = :customer_id";
+      FROM customer, car, tires, orders, orderline
+      WHERE customer.id = :customer_id
+      AND orders.customer_id = customer.id
+      AND orderline.orders_id = orders.id
+      AND tires.id = orderline.tires_id
+      AND car.id = tires.car_id";
 
     $show = $db->prepare($sql);
 

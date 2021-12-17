@@ -10,11 +10,12 @@ try {
     customer.lastname as customer_lastname,
     car.register as car_register,
     orders.orderdate
-    FROM customer, car, tires, orders
+    FROM customer, car, tires, orders, orderline
     WHERE customer.id = orders.customer_id
     AND customer.id = car.customer_id
     AND car.id = tires.car_id
-    AND tires.id = orders.tires_id";
+    AND orderline.orders_id = orders.id
+    AND tires.id = orderline.tires_id";
 
   $show = $db->query($sql);
 

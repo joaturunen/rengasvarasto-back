@@ -65,21 +65,21 @@ insert into tires (car_id, brand, model, type, hubcups, groovefl, groovefr, groo
 (9,'Kossa', 'etu:215/45ZR17, taka:245/40ZR17', 'talvi', true, 4, 4, 4, 4, 17, 'etu:5x15, taka 5x20', 'Renkaat hyvässä kunnossa', 'Maserati x 4', '');
 
 
-insert into orders (customer_id, employee_id, tires_id, season_id) values
-(1, 3, 1, 1),
-(2, 4, 2, 2),
-(3, 3, 3, 2),
-(4, 5, 4, 2),
-(5, 4, 5, 1),
-(3, 3, 6, 2),
-(3, 4, 7, 1),
-(3, 5, 8, 1);
+insert into orders (customer_id, employee_id) values
+(1, 3),
+(2, 4),
+(3, 3),
+(4, 5),
+(5, 4),
+(3, 3),
+(3, 4),
+(3, 5);
 
-insert into ordertable (orders_id, services_id) values
-(1, 4), (2, 5), (3, 5), (4, 5), (5, 6), (6, 7), (7, 4), (8, 4);
+insert into orderline (orders_id, services_id, tires_id) values
+(1, 4, 1), (2, 5, 2), (3, 5, 3), (4, 5, 4), (5, 6, 5), (6, 7, 6), (7, 4, 7), (8, 4, 8);
 
-UPDATE slot_order SET order_id = 1 WHERE slot_id = 13;
-UPDATE slot_order SET order_id = 2 WHERE slot_id = 14; 
-UPDATE slot_order SET order_id = 3 WHERE slot_id = 3; 
-UPDATE slot_order SET order_id = 4 WHERE slot_id = 200; 
-UPDATE slot_order SET order_id = 5 WHERE slot_id = 150; 
+UPDATE slot_order SET orderline_id = 1 WHERE slot_id = 13;
+UPDATE slot_order SET orderline_id = 2 WHERE slot_id = 14; 
+UPDATE slot_order SET orderline_id = 3 WHERE slot_id = 3; 
+UPDATE slot_order SET orderline_id = 4 WHERE slot_id = 200; 
+UPDATE slot_order SET orderline_id = 5 WHERE slot_id = 150; 
