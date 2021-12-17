@@ -2,18 +2,11 @@
 require_once '../../inc/headers.php';
 require_once '../../inc/functions.php';
 
-$input = json_decode(file_get_contents('php://input'));
+$input = json_decode(file_get_contents('php://input'), true);
 
 $order_id = filter_var($input->order_id, FILTER_SANITIZE_NUMBER_INT);
 
 try {
-
-    // $show = $db->prepare("SELECT * FROM car WHERE customer_id = :id");
-
-    // $show->bindValue(":id", $id, PDO::PARAM_INT);
-
-    // $show->execute();
-    // $data = $show->fetchAll(PDO::FETCH_ASSOC);
 
     $db = openDb();
 
@@ -28,15 +21,30 @@ try {
         car.register as car_register,
         car.brand as car_brand,
         car.model as car_model,
-        tire.brand as tire_brand,
-        tire.model as tire_model,
-        tire.type as tire_type,
-        tire.hubcups as tire_hubcups,
-        tire.rims as tire_rims,
-        tire.tirebolt as tire_tirebolt, 
+        tires.brand as tire_brand,
+        tires.model as tire_model,
+        tires.type as tire_type,
+        tires.hubcups as tire_hubcups,
+        tires.rims as tire_rims,
+        tires.tirebolt as tire_tirebolt, 
+        orders.orderdate as order_date
+        FROM customer, car, tires, orders
+        WHERE orders.id = :order_id
+        AND orders.customer_id = customer.id
+        AND orders.tires_id = tires.id
+        AND tires.car_id = car.id";
 
-        "
+    $order = $db->prepare($sql);
+    $order->bindValue(":order_id", $order_id, PDO::PARAM_INT);
+    $order->execute();
 
+    $data = $show->fetchAll(PDO::FETCH_ASSOC);
+
+    header('HTTP/1.1 200 OK');
+    $data = array(
+        
+    );
+    echo json_encode($data);
 } catch (PDOException $pdoex) {
     $db->rollback();
     returnError($pdoex);

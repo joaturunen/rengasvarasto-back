@@ -12,13 +12,13 @@ $model = filter_var($input->model, FILTER_SANITIZE_STRING);
 
 try {
   //instantiate DB & connect
-  $db = openDb();
-  $db->beginTransaction();
+  //$db = openDb();
+  //$db->beginTransaction();
 
   $car_id = addCarForCustomer($customer_id, $register, $brand, $model);
   $tires_id = addTires($car_id);
 
-  $db->commit();
+  //$db->commit();
   header('HTTP/1.1 200 OK');
   $data = array(
     'id' => $car_id,
