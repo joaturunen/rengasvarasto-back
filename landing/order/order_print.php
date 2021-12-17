@@ -41,9 +41,7 @@ try {
     $data = $show->fetchAll(PDO::FETCH_ASSOC);
 
     header('HTTP/1.1 200 OK');
-    $data = array(
-        
-    );
+    
     echo json_encode($data);
 } catch (PDOException $pdoex) {
     $db->rollback();
