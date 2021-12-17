@@ -29,7 +29,7 @@ try {
       $sql = "UPDATE orders SET tires_id = $tires_id WHERE orders.id = $order_id";
       executeInsert($db, $sql);
 
-      $sql = "UPDATE slot_order SET tires_id = $tires_id WHERE slot_id = $slot_id";
+      $sql = "UPDATE slot_order SET order_id = $order_id WHERE slot_id = $slot_id";
       $order_id = executeInsert($db, $sql);
 
       $message .= "Renkaat NRO-$oldTires_id vaihdetaan autoon. ";
@@ -39,13 +39,13 @@ try {
       $sql = "UPDATE orders SET tires_id = $tires_id WHERE orders.id = $order_id";
       executeInsert($db, $sql);
       
-      $stmt = $db->prepare("SELECT slot_id FROM slot_order WHERE tires_id IS NULL");
+      $stmt = $db->prepare("SELECT slot_id FROM slot_order WHERE order_id IS NULL");
       $stmt->execute();
       $slot_idAr = $stmt->fetch();
 
       $new_slot_id = $slot_idAr[0];
 
-      $sql = "UPDATE slot_order SET tires_id = $tires_id where slot_id = $new_slot_id";
+      $sql = "UPDATE slot_order SET order_id = $order_id where slot_id = $new_slot_id";
       $new_slot_id = executeInsert($db, $sql);
       $message .= "Lisätään varastoon renkaat NRO-$tires_id paikalle $new_slot_id. ";
     } else {
