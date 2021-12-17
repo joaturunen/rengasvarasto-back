@@ -254,7 +254,7 @@ function getCalculateSlotsNull($id)
       ON slot.id = s.slot_id 
       LEFT JOIN shelf 
       ON shelf.id = slot.shelf_id 
-      WHERE shelf.id = :id AND s.tires_id IS NULL");
+      WHERE shelf.id = :id AND s.order_id IS NULL");
 
     $show->bindValue(":id", $id, PDO::PARAM_INT);
 
@@ -276,8 +276,7 @@ function getCalculateAllSlotsNull()
     $show = $db->prepare("SELECT
       COUNT(slot_id)
       FROM slot_order 
-      WHERE tires_id IS NULL");
-
+      WHERE order_id IS NULL");
 
     $show->execute();
     $data = $show->fetchAll(PDO::FETCH_ASSOC);
@@ -296,7 +295,7 @@ function getCalculateAllSlotsNotNull()
     $show = $db->prepare("SELECT
       COUNT(slot_id)
       FROM slot_order 
-      WHERE tires_id IS NOT NULL");
+      WHERE order_id IS NOT NULL");
 
     $show->execute();
     $data = $show->fetchAll(PDO::FETCH_ASSOC);
