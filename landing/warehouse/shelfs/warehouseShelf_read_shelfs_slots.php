@@ -28,16 +28,16 @@ try {
     ON slot.shelf_id = shelf.id
     LEFT JOIN slot_order
     ON slot_order.slot_id = slot.id
-    LEFT JOIN orders
-    ON orders.id = slot_order.order_id
+    LEFT JOIN orderline
+    ON orderline.id = slot_order.orderline_id
     LEFT JOIN tires
-    ON tires.id = orders.tires_id
+    ON tires.id = orderline.tires_id
+    LEFT JOIN services
+    ON services.id = orderline.services_id
     LEFT JOIN season
-    ON season.id = orders.season_id
+    ON season.id = services.season_id
     WHERE shelf.id = :id
     ORDER BY slot.id");
-
-  // $show = $db->query("SELECT * FROM shelf WHERE id = $id");
 
   $show->bindValue(":id", $id, PDO::PARAM_INT);
   $show->execute();

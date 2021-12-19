@@ -148,16 +148,10 @@ create table season (
 create table orders (
 id smallserial primary key,
 orderdate date default current_timestamp,
-tires_id int,
-info text,
-season_id int,
 customer_id int not null,
 employee_id int not null,
 foreign key (customer_id) references customer(id),
-foreign key (season_id) references season(id),
 foreign key (employee_id) references employee(id)
-on delete restrict,
-foreign key (tires_id) references tires(id)
 on delete restrict
 );
 
@@ -181,22 +175,26 @@ foreign key (category_id) references category(id)
 );
 
 
-create table ordertable (
+create table orderline (
 id smallserial primary key,
 orders_id int not null, 
 services_id int not null,
+tires_id int,
+info text,
 foreign key (orders_id) references orders(id),
 foreign key (services_id) references services(id)
+on delete restrict,
+foreign key (tires_id) references tires(id)
 on delete restrict
 );
 
-create index ordertable_index on ordertable (
+create index orderline_index on orderline (
 orders_id, services_id 
 );
 
 create table slot_order (
 slot_id int not null,
-order_id int,
-foreign key (order_id) references orders(id) on delete restrict,
+orderline_id int,
+foreign key (orderline_id) references orderline(id) on delete restrict,
 foreign key (slot_id) references slot(id)
 );

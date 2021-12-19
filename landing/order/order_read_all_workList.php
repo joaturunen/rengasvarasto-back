@@ -5,15 +5,15 @@ require_once '../../inc/functions.php';
 try {
   $db = openDb();
   $sql = "SELECT
-    orders.id,
+    DISTINCT ON (orders.id) orders_id,
     car.register as car_register,
-    orders.orderdate,
-    orders.info
-    FROM customer, car, tires, orders
+    orders.orderdate
+    FROM customer, car, orders, orderline, tires
     WHERE customer.id = orders.customer_id
-    AND customer.id = car.customer_id
+    AND orderline.orders_id = orders.id
+    AND tires.id = orderline.tires_id
     AND car.id = tires.car_id
-    AND tires.id = orders.tires_id";
+    ORDER BY orders.id";
 
   $show = $db->query($sql);
 
