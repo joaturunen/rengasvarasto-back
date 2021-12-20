@@ -180,7 +180,6 @@ id smallserial primary key,
 orders_id int not null, 
 services_id int not null,
 tires_id int,
-info text,
 foreign key (orders_id) references orders(id),
 foreign key (services_id) references services(id)
 on delete restrict,

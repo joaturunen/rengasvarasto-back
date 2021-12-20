@@ -35,9 +35,7 @@ insert into services (service, price, category_id) values
 
 insert into services (service, price, category_id, season_id) values
 ('kesäsäilytys', 39.99, 1, 1),
-('talvisäilytys', 55.00, 1, 2),
-('renkaanvaihto ja kesäsäilytys', 80.00, 1, 1),
-('renkaanvaihto ja talvisäilytys', 95.00, 1, 2);
+('talvisäilytys', 55.00, 1, 2);
 
 
 insert into car (register, brand, model, customer_id) values
@@ -76,7 +74,7 @@ insert into orders (customer_id, employee_id) values
 (3, 5);
 
 insert into orderline (orders_id, services_id, tires_id) values
-(1, 4, 1), (2, 5, 2), (3, 5, 3), (4, 5, 4), (5, 6, 5), (6, 7, 6), (7, 4, 7), (8, 4, 8);
+(1, 4, 1), (2, 5, 2), (3, 5, 3), (4, 5, 4), (5, 4, 5), (6, 5, 6), (7, 4, 7), (8, 4, 8);
 
 UPDATE slot_order SET orderline_id = 1 WHERE slot_id = 13;
 UPDATE slot_order SET orderline_id = 2 WHERE slot_id = 14; 

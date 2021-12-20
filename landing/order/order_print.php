@@ -2,17 +2,12 @@
 require_once '../../inc/headers.php';
 require_once '../../inc/functions.php';
 
-// $input = json_decode(file_get_contents('php://input'));
-
-// $order_id = filter_var($input->order_id, FILTER_SANITIZE_NUMBER_INT);
 
 $url = parse_url(filter_input(INPUT_SERVER,'PATH_INFO'),PHP_URL_PATH);
 
 $parameters = explode('/',$url);
 
 $order_id = $parameters[1];
-
-//$order_id = 3;
 
 try {
 
@@ -41,21 +36,15 @@ try {
         tires.groovebr as tire_groovebr,
         tires.text as tire_info,
         orders.orderdate as order_date,
-        services.service as service_title,
-        warehouse.id as warehouse_id,
-        shelf.id as shelf_id,
-        slot.id as slot_id
-        FROM customer, car, tires, services, orders, orderline, slot_order, slot, shelf, warehouse
+        services.service as service_title
+        FROM customer, car, tires, services, orders, orderline, slot_order
         WHERE orders.id = :order_id
         AND orders.customer_id = customer.id
         AND orderline.orders_id = orders.id
         AND orderline.id = slot_order.orderline_id
         AND orderline.services_id = services.id
         AND orderline.tires_id = tires.id
-        AND tires.car_id = car.id
-        AND slot_order.slot_id = slot.id
-        AND slot.shelf_id = shelf.id
-        AND shelf.warehouse_id = warehouse.id";
+        AND tires.car_id = car.id";
 
     $order = $db->prepare($sql);
     $order->bindValue(":order_id", $order_id, PDO::PARAM_INT);
