@@ -10,6 +10,7 @@
 -- lc_ctype = 'Finnish_Finland.1252'
 -- tablespace = pg_default
 -- connection limit = -1;
+alter database "tirehotel" set datestyle to "German, DMY";
 
 create table role (
 id smallserial primary key,
@@ -122,7 +123,7 @@ car_id int not null,
 brand varchar(25),
 model varchar(50),
 type varchar(25),
-hubcups boolean,
+hubcups varchar(25),
 tiresize varchar(25),
 tirebolt varchar(25),
 groovefl varchar(25),
@@ -132,7 +133,6 @@ groovebr varchar(25),
 text text,
 rims varchar(25),
 servicedate date default current_timestamp,
-info text,
 foreign key (car_id) references car(id)
 );
 

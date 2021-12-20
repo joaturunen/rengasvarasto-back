@@ -9,7 +9,7 @@ $id = filter_var($input->id, FILTER_SANITIZE_NUMBER_INT);
 $brand = filter_var($input->brand, FILTER_SANITIZE_STRING);
 $model = filter_var($input->model, FILTER_SANITIZE_STRING);
 $type = filter_var($input->type, FILTER_SANITIZE_STRING);
-//$hubcups = filter_var($input->hubcups, FILTER_SANITIZE_STRING);
+$hubcups = filter_var($input->hubcups, FILTER_SANITIZE_STRING);
 $groovefl = filter_var($input->groovefl, FILTER_SANITIZE_STRING);
 $groovefr = filter_var($input->groovefr, FILTER_SANITIZE_STRING);
 $groovebl = filter_var($input->groovebl, FILTER_SANITIZE_STRING);
@@ -18,9 +18,8 @@ $tiresize = filter_var($input->tiresize, FILTER_SANITIZE_STRING);
 $tirebolt = filter_var($input->tirebolt, FILTER_SANITIZE_STRING);
 $text = filter_var($input->text, FILTER_SANITIZE_STRING);
 $rims = filter_var($input->rims, FILTER_SANITIZE_STRING);
-//$info = filter_var($input->info, FILTER_SANITIZE_STRING);
 
-$hubcups = true;
+
 
 
 try {
@@ -32,7 +31,7 @@ try {
         SET brand = :brand, 
             model = :model,
             type = :type,
-            /*hubcups = :hubcups,*/
+            hubcups = :hubcups,
             groovefl = :groovefl,
             groovefr = :groovefr,
             groovebl = :groovebl,
@@ -49,7 +48,7 @@ try {
     $update->bindValue(":brand", $brand, PDO::PARAM_STR);
     $update->bindValue(":model", $model, PDO::PARAM_STR);
     $update->bindValue(":type", $type, PDO::PARAM_STR);
-    /*$update->bindValue(":hubcups", $hubcups, PDO::PARAM_STR);*/
+    $update->bindValue(":hubcups", $hubcups, PDO::PARAM_STR);
     $update->bindValue(":groovefl", $groovefl, PDO::PARAM_STR);
     $update->bindValue(":groovefr", $groovefr, PDO::PARAM_STR);
     $update->bindValue(":groovebl", $groovebl, PDO::PARAM_STR);
@@ -67,7 +66,7 @@ try {
         'brand' => $brand, 
         'model' => $model, 
         'type' => $type, 
-        /*'hubcups' => $hubcups,*/
+        'hubcups' => $hubcups,
         'groovefl' => $groovefl, 
         'groovefr' => $groovefr, 
         'groovebl' => $groovebl, 

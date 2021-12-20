@@ -12,12 +12,12 @@ insert into employee (firstname, lastname, phone, email, address, zipcode, city,
 ('Henna', 'Hallari', '0405234567', 'henhall@rengashotelli.org', 'Hallarikatu 5', '00004', 'Hallarila', 'Hallari', 'salasana', 4),
 ('Harri', 'Hallimestari', '0406234567', 'harhall@rengashotelli.org', 'Hallarikatu 6', '00004', 'Hallarila', 'Hallaripallari', 'salasana', 4);
 
-insert into customer (firstname, lastname, phone, email, address, zipcode, city, employee_id) values
-('Martsa', 'Järvis', '0411234567', 'martsa@koulu.org', 'Martsankoti 1', '10001', 'Martsala', 2),
-('Jontsa', 'Turus', '0412234567', 'jontsa@koulu.org', 'Jontsankämppä 2', '10002', 'Jontsala', 3),
-('Altsa', 'Luomala', '0413234567', 'altsa@koulu.org', 'Altsankukkula 3', '10003', 'Altsala', 2),
-('Katsa', 'Mäkis', '0414234567', 'katsa@koulu.org', 'Katsanmäki 4', '10004', 'Katsala', 4),
-('Hantsa', 'Hirviölä', '0415234567', 'hantsa@koulu.org', 'Hantsankolo 5', '10005', 'Hantsala', 4);
+insert into customer (firstname, lastname, phone, email, address, zipcode, city, customersaved, employee_id) values
+('Martsa', 'Järvis', '0411234567', 'martsa@koulu.org', 'Martsankoti 1', '10001', 'Martsala', '20.12.2020', 2),
+('Jontsa', 'Turus', '0412234567', 'jontsa@koulu.org', 'Jontsankämppä 2', '10002', 'Jontsala', '21.12.2021', 3),
+('Altsa', 'Luomala', '0413234567', 'altsa@koulu.org', 'Altsankukkula 3', '10003', 'Altsala', '22.12.2021', 2),
+('Katsa', 'Mäkis', '0414234567', 'katsa@koulu.org', 'Katsanmäki 4', '10004', 'Katsala', '23.12.2021', 4),
+('Hantsa', 'Hirviölä', '0415234567', 'hantsa@koulu.org', 'Hantsankolo 5', '10005', 'Hantsala', '24.12.2021', 4);
 
 
 insert into category (name) values
@@ -51,18 +51,18 @@ insert into car (register, brand, model, customer_id) values
 ('VEC-1', 'Vector', 'W8', 3),
 ('VEC-2', 'Vector', 'W8', 1);
 
-insert into tires (car_id, brand, model, type, hubcups, groovefl, groovefr, groovebl, groovebr, tiresize, tirebolt, text, rims, info) values
-(1,'Firestone', 'etu:215/45ZR17, taka:245/40ZR17', 'kesä', true, 4, 4, 4, 4, 17, 'etu:5x15, taka 5x20', 'Renkaat hyvässä kunnossa', 'Maserati x 4', ''),
-(2,'Bridgestone', 'etu:245/35R20, taka:285/35R20', 'talvi', true, 5, 5, 5, 5, 20, 'etu:5x15, taka 5x20', 'Renkaat hyvässä kunnossa', 'Ferrari x 4', ''),
-(3,'Michelin', 'etu:245/40R17, taka:335/35R17', 'talvi', true, 5, 5, 5, 5, 17, 'etu:5x15, taka 5x20', 'Renkaat hyvässä kunnossa', 'Lamborghini x 4', ''),
-(4,'Goodyear', 'etu:245/40R17, taka:335/35R17', 'kesä', true, 4, 4, 4, 4, 17, 'etu:5x15, taka 5x20', 'Renkaat hyvässä kunnossa', 'Aston Martin x 4', ''),
-(5, 'Purukumit', '195/32R14', 'kitka', false, 1, 1, 1, 1, 14, '5x10', 'Renkaat on mukavan sileät, poliisi-setä tykkää', 'Latukkax4', 'Asiakkaan kannattaisi ostaa uudet renkaat'),
-(6, 'Tulikivi', 'etu:245/40R17, taka:335/35R17', 'kesä', true, 6, 3.5, 6, 4, 17, 'etu:5x18, taka 5x20', 'Renkaat are noice!', 'Tesla x 4', 'Sähköpirssin renkaat ei toimi sähköllä'),
-(7, 'Siltakivi', 'etu:245/40R17, taka:335/35R17', 'talvi', true, 5, 3.3, 5, 3.2, 19, 'etu:5x15, taka 5x20', 'Renkaat toispuoleiset', 'Alfa Romeo x 4', 'Ei kannata mennä mutkiin ovi eellä'),
-(8, 'Hyvävuosi', 'etu:245/40R17, taka:335/35R17', 'kitka', true, 2.2, 2.2, 5, 3.2, 19, 'etu:5x15, taka 5x20', 'Marketeilla rallattu', 'Vector x 4', 'Mukava vaihtaa renkaita näin kolmelta aamuyöstä'),
-(1,'Jänis', 'etu:215/45ZR17, taka:245/40ZR17', 'talvi', true, 4, 4, 4, 4, 17, 'etu:5x15, taka 5x20', 'Renkaat hyvässä kunnossa', 'Maserati x 4', ''),
-(9,'koira', 'etu:215/45ZR17, taka:245/40ZR17', 'talvi', true, 4, 4, 4, 4, 17, 'etu:5x15, taka 5x20', 'Renkaat hyvässä kunnossa', 'Maserati x 4', ''),
-(9,'Kossa', 'etu:215/45ZR17, taka:245/40ZR17', 'talvi', true, 4, 4, 4, 4, 17, 'etu:5x15, taka 5x20', 'Renkaat hyvässä kunnossa', 'Maserati x 4', '');
+insert into tires (car_id, brand, model, type, hubcups, groovefl, groovefr, groovebl, groovebr, tiresize, tirebolt, text, rims) values
+(1,'Firestone', 'etu:215/45ZR17, taka:245/40ZR17', 'kesä', 'kyllä', 4, 4, 4, 4, 17, 'etu:5x15, taka 5x20', 'Renkaat hyvässä kunnossa', 'Maserati x 4'),
+(2,'Bridgestone', 'etu:245/35R20, taka:285/35R20', 'talvi', 'kyllä', 5, 5, 5, 5, 20, 'etu:5x15, taka 5x20', 'Renkaat hyvässä kunnossa', 'Ferrari x 4'),
+(3,'Michelin', 'etu:245/40R17, taka:335/35R17', 'talvi', 'kyllä', 5, 5, 5, 5, 17, 'etu:5x15, taka 5x20', 'Renkaat hyvässä kunnossa', 'Lamborghini x 4'),
+(4,'Goodyear', 'etu:245/40R17, taka:335/35R17', 'kesä', 'kyllä', 4, 4, 4, 4, 17, 'etu:5x15, taka 5x20', 'Renkaat hyvässä kunnossa', 'Aston Martin x 4'),
+(5, 'Purukumit', '195/32R14', 'kitka', 'ei', 1, 1, 1, 1, 14, '5x10', 'Renkaat on mukavan sileät, poliisi-setä tykkää', 'Latukkax4'),
+(6, 'Tulikivi', 'etu:245/40R17, taka:335/35R17', 'kesä', 'kyllä', 6, 3.5, 6, 4, 17, 'etu:5x18, taka 5x20', 'Renkaat are noice!', 'Tesla x 4'),
+(7, 'Siltakivi', 'etu:245/40R17, taka:335/35R17', 'talvi', 'kyllä', 5, 3.3, 5, 3.2, 19, 'etu:5x15, taka 5x20', 'Renkaat toispuoleiset', 'Alfa Romeo x 4'),
+(8, 'Hyvävuosi', 'etu:245/40R17, taka:335/35R17', 'kitka', 'kyllä', 2.2, 2.2, 5, 3.2, 19, 'etu:5x15, taka 5x20', 'Marketeilla rallattu', 'Vector x 4'),
+(1,'Jänis', 'etu:215/45ZR17, taka:245/40ZR17', 'talvi', 'kyllä', 4, 4, 4, 4, 17, 'etu:5x15, taka 5x20', 'Renkaat hyvässä kunnossa', 'Maserati x 4'),
+(9,'koira', 'etu:215/45ZR17, taka:245/40ZR17', 'talvi', 'kyllä', 4, 4, 4, 4, 17, 'etu:5x15, taka 5x20', 'Renkaat hyvässä kunnossa', 'Maserati x 4'),
+(9,'Kossa', 'etu:215/45ZR17, taka:245/40ZR17', 'talvi', 'kyllä', 4, 4, 4, 4, 17, 'etu:5x15, taka 5x20', 'Renkaat hyvässä kunnossa', 'Maserati x 4');
 
 
 insert into orders (customer_id, employee_id) values

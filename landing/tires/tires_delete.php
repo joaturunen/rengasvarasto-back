@@ -10,7 +10,7 @@ try {
   $db = openDb();
   $db->beginTransaction();
   
-  $updateSlot = $db->prepare("UPDATE slot_order SET tires_id = null WHERE tires_id = :id");
+  $updateSlot = $db->prepare("UPDATE slot_order SET orderline_id = null WHERE slot_order.orderline_id = orderline.id AND orderline.tires_id = :id");
   $updateSlot->bindValue(":id", $id, PDO::PARAM_INT);
   $updateSlot->execute();
 

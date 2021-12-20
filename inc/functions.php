@@ -95,7 +95,6 @@ function getTires($id)
     tires.text,
     tires.rims,
     tires.servicedate,
-    tires.info,
     slot.id as slot_id,
     shelf.id as shelf_id,
     warehouse.id as warehouse_id,
