@@ -2,9 +2,15 @@
 require_once '../../inc/headers.php';
 require_once '../../inc/functions.php';
 
-$input = json_decode(file_get_contents('php://input'));
+// $input = json_decode(file_get_contents('php://input'));
 
-$order_id = filter_var($input->order_id, FILTER_SANITIZE_NUMBER_INT);
+// $order_id = filter_var($input->order_id, FILTER_SANITIZE_NUMBER_INT);
+
+$url = parse_url(filter_input(INPUT_SERVER,'PATH_INFO'),PHP_URL_PATH);
+
+$parameters = explode('/',$url);
+
+$order_id = $parameters[1];
 
 //$order_id = 3;
 
