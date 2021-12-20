@@ -56,7 +56,6 @@ function getCars($id)
 
 function getCustomer($id)
 {
-
   try {
     $db = openDb();
 
@@ -133,7 +132,6 @@ function getTires($id)
 
 function getShelf_amount($id)
 {
-
   try {
     $db = openDb();
 
@@ -152,7 +150,6 @@ function getShelf_amount($id)
 
 function getShelfs()
 {
-
   try {
 
     $db = openDb();
@@ -170,7 +167,6 @@ function getShelfs()
 
 function getShelfSlots($id)
 {
-
   try {
 
     $db = openDb();
@@ -190,7 +186,6 @@ function getShelfSlots($id)
 
 function getCalculateSlots($id)
 {
-
   try {
 
     $db = openDb();
@@ -209,7 +204,6 @@ function getCalculateSlots($id)
 
 function getCalculateSlotsNull($id)
 {
-
   try {
 
     $db = openDb();
@@ -233,10 +227,8 @@ function getCalculateSlotsNull($id)
   }
 }
 
-
 function getCalculateAllSlotsNull()
 {
-
   try {
     $db = openDb();
     $show = $db->prepare("SELECT
@@ -255,7 +247,6 @@ function getCalculateAllSlotsNull()
 
 function getCalculateAllSlotsNotNull()
 {
-
   try {
     $db = openDb();
     $show = $db->prepare("SELECT
@@ -275,7 +266,6 @@ function getCalculateAllSlotsNotNull()
 
 function addCarForCustomer($customer_id, $register, $brand, $model){
   {
-
     try {
       $db = openDb();
       $sql = "INSERT INTO car (register, brand, model, customer_id)
@@ -290,8 +280,8 @@ function addCarForCustomer($customer_id, $register, $brand, $model){
   }
 }
 
-function addTires($car_id){
-
+function addTires($car_id)
+{
   try {
     $db = openDb();
     $sql = "INSERT INTO tires (car_id) VALUES ($car_id)";
@@ -304,7 +294,8 @@ function addTires($car_id){
   }
 }
 
-function getCusOrders($customer_id) {
+function getCusOrders($customer_id)
+{
   try {
     $db = openDb();
     $sql = "SELECT

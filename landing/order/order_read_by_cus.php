@@ -18,24 +18,6 @@ try {
 
     $data['orders'] = $orders_array;
 
-//   $sql = "SELECT
-//     orders.id,
-//     car.register as car_register,
-//     orders.orderdate
-//     FROM customer, car, tires, orders
-//     WHERE customer.id = orders.customer_id
-//     AND customer.id = car.customer_id
-//     AND car.id = tires.car_id
-//     AND tires.id = orders.tires_id
-//     AND customer.id = :customer_id";
-
-//   $orders = $db->prepare($sql);
-
-//   $orders->bindValue(":customer_id", $customer_id, PDO::PARAM_INT);
-
-//   $orders->execute();
-//   $data = $orders->fetchAll(PDO::FETCH_ASSOC);
-
     header('HTTP/1.1 200 OK');
 
     echo json_encode($data);

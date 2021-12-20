@@ -22,6 +22,7 @@ try {
     'model' => $model,
     'customer_id' => $customer_id
   );
+  
   echo json_encode($data);
 } catch (PDOException $pdoex) {
   returnError($pdoex);
