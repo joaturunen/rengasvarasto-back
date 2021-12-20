@@ -39,6 +39,7 @@ try {
         tires.groovefr as tire_groovefr,
         tires.groovebl as tire_groovebl,
         tires.groovebr as tire_groovebr,
+        tires.text as tire_info,
         orders.orderdate as order_date,
         services.service as service_title,
         warehouse.id as warehouse_id,
