@@ -10,6 +10,7 @@
 -- lc_ctype = 'Finnish_Finland.1252'
 -- tablespace = pg_default
 -- connection limit = -1;
+alter database "tirehotel" set datestyle to "German, DMY";
 
 create table role (
 id smallserial primary key,
