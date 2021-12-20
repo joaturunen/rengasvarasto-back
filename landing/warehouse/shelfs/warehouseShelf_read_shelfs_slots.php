@@ -20,7 +20,8 @@ try {
     tires.brand as tires_brand,
     tires.type as tires_type,
     tires.text as tires_text,
-    season.name as season
+    season.name as season,
+    orders.customer_id as customer_id
     FROM warehouse
     LEFT JOIN shelf
     ON shelf.warehouse_id = warehouse.id
@@ -36,6 +37,8 @@ try {
     ON services.id = orderline.services_id
     LEFT JOIN season
     ON season.id = services.season_id
+    LEFT JOIN orders
+    ON orders.id = orderline.orders_id
     WHERE shelf.id = :id
     ORDER BY slot.id");
 
