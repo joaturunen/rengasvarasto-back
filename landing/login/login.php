@@ -1,11 +1,6 @@
 <?php
-ob_start();
-session_start();
 require_once '../../inc/headers.php';
 require_once '../../inc/functions.php';
-
-// include_once '../../config/Database.php';
-// include_once '../../models/Customer.php';
 
 // Get raw posted data
 $login = filter_input(INPUT_POST, 'login', FILTER_SANITIZE_STRING);
@@ -17,7 +12,7 @@ $sql = "SELECT * FROM employee WHERE login = '$login'";
 
 try {
   $db = openDb();
-  //Get data from DB
+
   $query = $db->query($sql);
   $user = $query->fetch(PDO::FETCH_OBJ);
 

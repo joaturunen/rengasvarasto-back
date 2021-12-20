@@ -6,7 +6,6 @@ $input = json_decode(file_get_contents('php://input'));
 
 $order_id = filter_var($input->order_id, FILTER_SANITIZE_NUMBER_INT);
 
-//$order_id = 3;
 
 try {
 
