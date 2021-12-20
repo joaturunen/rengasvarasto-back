@@ -9,7 +9,7 @@ $car_id = intval(filter_var($input->car_id, FILTER_SANITIZE_NUMBER_INT));
 $brand = filter_var($input->brand, FILTER_SANITIZE_STRING);
 $model = filter_var($input->model, FILTER_SANITIZE_STRING);
 $type = filter_var($input->type, FILTER_SANITIZE_STRING);
-//$hubcups = filter_var($input->hubcups, FILTER_SANITIZE_STRING);
+$hubcups = filter_var($input->hubcups, FILTER_SANITIZE_STRING);
 $groovefl = filter_var($input->groovefl, FILTER_SANITIZE_STRING);
 $groovefr = filter_var($input->groovefr, FILTER_SANITIZE_STRING);
 $groovebl = filter_var($input->groovebl, FILTER_SANITIZE_STRING);
@@ -19,7 +19,6 @@ $tirebolt = filter_var($input->tirebolt, FILTER_SANITIZE_STRING);
 $text = filter_var($input->text, FILTER_SANITIZE_STRING);
 $rims = filter_var($input->rims, FILTER_SANITIZE_STRING);
 
-$hubcups = true;
 
 
 try {
