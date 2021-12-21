@@ -35,14 +35,12 @@ try {
         tires.groovebl as tire_groovebl,
         tires.groovebr as tire_groovebr,
         tires.text as tire_info,
-        orders.orderdate as order_date,
-        services.service as service_title
-        FROM customer, car, tires, services, orders, orderline, slot_order
+        orders.orderdate as order_date
+        FROM customer, car, tires, orders, orderline, slot_order
         WHERE orders.id = :order_id
         AND orders.customer_id = customer.id
         AND orderline.orders_id = orders.id
         AND orderline.id = slot_order.orderline_id
-        AND orderline.services_id = services.id
         AND orderline.tires_id = tires.id
         AND tires.car_id = car.id";
 
@@ -51,6 +49,16 @@ try {
     $order->execute();
 
     $data['orderdata'] = $order->fetchAll(PDO::FETCH_ASSOC);
+
+    $services = $db->prepare("SELECT service as service_title, sum(price) as price
+      FROM services, orderline, orders
+      WHERE services.id = orderline.services_id
+      AND orderline.orders_id = orders.id
+      AND orders.id = :order_id
+      GROUP BY service");
+    $services->bindValue(":order_id", $order_id, PDO::PARAM_INT);
+    $services->execute();
+    $data['services'] = $services->fetchAll(PDO::FETCH_ASSOC);
 
     $office_id = 1;
     $office = $db->prepare("select * from office where id = :office_id");
