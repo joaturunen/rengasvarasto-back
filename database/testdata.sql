@@ -81,3 +81,6 @@ UPDATE slot_order SET orderline_id = 2 WHERE slot_id = 14;
 UPDATE slot_order SET orderline_id = 3 WHERE slot_id = 3; 
 UPDATE slot_order SET orderline_id = 4 WHERE slot_id = 200; 
 UPDATE slot_order SET orderline_id = 5 WHERE slot_id = 150; 
+UPDATE slot_order SET orderline_id = 6 WHERE slot_id = 38; 
+UPDATE slot_order SET orderline_id = 7 WHERE slot_id = 17; 
+UPDATE slot_order SET orderline_id = 8 WHERE slot_id = 98; 
