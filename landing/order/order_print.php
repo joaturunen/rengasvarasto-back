@@ -36,11 +36,10 @@ try {
         tires.groovebr as tire_groovebr,
         tires.text as tire_info,
         orders.orderdate as order_date
-        FROM customer, car, tires, orders, orderline, slot_order
+        FROM customer, car, tires, orders, orderline
         WHERE orders.id = :order_id
         AND orders.customer_id = customer.id
         AND orderline.orders_id = orders.id
-        AND orderline.id = slot_order.orderline_id
         AND orderline.tires_id = tires.id
         AND tires.car_id = car.id";
 

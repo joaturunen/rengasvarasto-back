@@ -118,7 +118,7 @@ shelf_id
 );
 
 create table tires (
-id smallserial primary key,
+id bigserial primary key,
 car_id int not null,
 brand varchar(25),
 model varchar(50),
@@ -176,10 +176,11 @@ foreign key (category_id) references category(id)
 
 
 create table orderline (
-id smallserial primary key,
+id bigserial primary key,
 orders_id int not null, 
 services_id int not null,
-tires_id int,
+tires_id int not null,
+info text,
 foreign key (orders_id) references orders(id),
 foreign key (services_id) references services(id)
 on delete restrict,
