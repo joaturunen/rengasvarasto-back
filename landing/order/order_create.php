@@ -59,7 +59,7 @@ try {
     }
 
     if($orderline_id !== 0){
-      $sql = "UPDATE orderline SET info = '$message' WHERE orderline.id = $orderline_id";
+      $sql = "UPDATE orderline SET info = '$message' WHERE id = $orderline_id";
       executeInsert($db, $sql);
     }
 
