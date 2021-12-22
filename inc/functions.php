@@ -1,4 +1,6 @@
 <?php
+
+// open database
 function openDb(): object
 {
   $ini = parse_ini_file("config.ini", true);
@@ -13,6 +15,7 @@ function openDb(): object
   return $db;
 }
 
+// get data from single table in database
 function selectAsJson(object $db, string $sql): void
 {
   $query = $db->query($sql);
@@ -21,12 +24,14 @@ function selectAsJson(object $db, string $sql): void
   echo json_encode($results);
 }
 
+// get last inserted id from table
 function executeInsert(object $db, string $sql): int
 {
   $query = $db->query($sql);
   return $db->lastInsertId();
 }
 
+// error message
 function returnError(PDOException $pdoex): void
 {
   header('HTTP/1.1 500 Internal Server Error');
@@ -35,6 +40,8 @@ function returnError(PDOException $pdoex): void
   exit;
 }
 
+
+// retrieve single customer cars
 function getCars($id)
 {
 
@@ -54,6 +61,7 @@ function getCars($id)
   }
 }
 
+// retrieve single customer info
 function getCustomer($id)
 {
   try {
@@ -72,7 +80,7 @@ function getCustomer($id)
   }
 }
 
-
+// retrieve single car tires, location and season
 function getTires($id)
 {
   try {
@@ -129,7 +137,7 @@ function getTires($id)
   }
 }
 
-
+// retrieve amount of shelfs
 function getShelf_amount($id)
 {
   try {
@@ -148,6 +156,7 @@ function getShelf_amount($id)
   }
 }
 
+// retrieve shelf ids
 function getShelfs()
 {
   try {
@@ -165,6 +174,7 @@ function getShelfs()
   }
 }
 
+// retrieve single shelf slots
 function getShelfSlots($id)
 {
   try {
@@ -183,7 +193,7 @@ function getShelfSlots($id)
   }
 }
 
-
+// calculate slots per shelf
 function getCalculateSlots($id)
 {
   try {
@@ -202,6 +212,7 @@ function getCalculateSlots($id)
   }
 }
 
+// calculate null slots per shelf
 function getCalculateSlotsNull($id)
 {
   try {
@@ -227,6 +238,7 @@ function getCalculateSlotsNull($id)
   }
 }
 
+// calculate all null slots
 function getCalculateAllSlotsNull()
 {
   try {
@@ -245,6 +257,7 @@ function getCalculateAllSlotsNull()
   }
 }
 
+// calculate all not null slots
 function getCalculateAllSlotsNotNull()
 {
   try {
@@ -263,7 +276,7 @@ function getCalculateAllSlotsNotNull()
   }
 }
 
-
+// save car for customer
 function addCarForCustomer($customer_id, $register, $brand, $model){
   {
     try {
@@ -280,6 +293,7 @@ function addCarForCustomer($customer_id, $register, $brand, $model){
   }
 }
 
+// save tires for car
 function addTires($car_id)
 {
   try {
@@ -294,6 +308,7 @@ function addTires($car_id)
   }
 }
 
+// retrieve single customer orders
 function getCusOrders($customer_id)
 {
   try {
@@ -322,6 +337,7 @@ function getCusOrders($customer_id)
   }
 }
 
+// retrieve single car old tires
 function getTiresOldModal($id)
 {
   try {
